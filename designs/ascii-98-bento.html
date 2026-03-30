@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cameron Lee - Notepad Bento [Win98]</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'MS Sans Serif', Tahoma, Arial, sans-serif;
+            font-size: 11px;
+            background-color: #008080;
+            color: #000;
+            min-height: 100vh;
+            padding: 20px 20px 56px 20px;
+        }
+
+        /* Back link as desktop icon */
+        .back-icon {
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            width: 70px;
+            text-decoration: none;
+            color: #fff;
+            text-shadow: 1px 1px 1px #000;
+            z-index: 10;
+        }
+        .back-icon:hover .icon-label { background-color: #000080; }
+        .back-icon .icon-label { font-size: 11px; text-align: center; padding: 1px 3px; }
+
+        /* Bento grid */
+        .bento {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: minmax(160px, auto);
+            gap: 8px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 80px;
+        }
+
+        /* Window chrome */
+        .window {
+            background-color: #c0c0c0;
+            border: 2px solid;
+            border-color: #ffffff #808080 #808080 #ffffff;
+            box-shadow: inset 1px 1px 0 #dfdfdf, inset -1px -1px 0 #0a0a0a;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .title-bar {
+            background: linear-gradient(90deg, #000080, #1084d0);
+            padding: 3px 4px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 22px;
+            flex-shrink: 0;
+        }
+
+        .title-bar-text {
+            color: #fff;
+            font-weight: bold;
+            font-size: 11px;
+            padding-left: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .title-bar-controls {
+            display: flex;
+            gap: 2px;
+        }
+
+        .title-bar-controls span {
+            width: 16px;
+            height: 14px;
+            background-color: #c0c0c0;
+            border: 1px solid;
+            border-color: #ffffff #808080 #808080 #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        .menu-bar {
+            background-color: #c0c0c0;
+            border-bottom: 1px solid #808080;
+            padding: 2px 0;
+            display: flex;
+            flex-shrink: 0;
+        }
+
+        .menu-bar span { padding: 2px 6px; font-size: 11px; }
+        .menu-bar span:hover { background-color: #000080; color: #fff; }
+
+        /* Notepad content */
+        .notepad-content {
+            background-color: #fffff0;
+            border: 2px solid;
+            border-color: #808080 #ffffff #ffffff #808080;
+            margin: 3px;
+            padding: 8px;
+            overflow: auto;
+            flex: 1;
+        }
+
+        .notepad-content pre {
+            font-family: "Courier New", Courier, monospace;
+            font-size: 12px;
+            line-height: 1.4;
+            color: #000;
+            white-space: pre;
+        }
+
+        .notepad-content pre a {
+            color: #0000ff;
+            text-decoration: underline;
+        }
+        .notepad-content pre a:visited { color: #800080; }
+        .notepad-content pre a:hover { color: #0066cc; }
+
+        .notepad-content pre .bold { font-weight: bold; }
+        .notepad-content pre .heading { color: #000080; font-weight: bold; }
+        .notepad-content pre .meta { color: #808080; }
+
+        .status-bar {
+            background-color: #c0c0c0;
+            border-top: 1px solid #808080;
+            padding: 1px 4px;
+            font-size: 10px;
+            flex-shrink: 0;
+        }
+
+        .status-bar-field {
+            border: 1px solid;
+            border-color: #808080 #ffffff #ffffff #808080;
+            padding: 0 4px;
+        }
+
+        /* Grid placements */
+        .w-hero { grid-column: span 2; grid-row: span 2; }
+        .w-contact { grid-column: span 2; }
+        .w-education { grid-column: span 2; }
+        .w-skills { grid-column: span 2; }
+        .w-experience { grid-column: span 4; }
+        .w-projects { grid-column: span 2; }
+
+        /* Taskbar */
+        .taskbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 36px;
+            background-color: #c0c0c0;
+            border-top: 2px solid #ffffff;
+            display: flex;
+            align-items: center;
+            padding: 2px 4px;
+            z-index: 9999;
+        }
+
+        .start-button {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            background-color: #c0c0c0;
+            border: 2px solid;
+            border-color: #ffffff #808080 #808080 #ffffff;
+            padding: 3px 8px;
+            font-family: 'MS Sans Serif', Tahoma, Arial, sans-serif;
+            font-size: 11px;
+            font-weight: bold;
+            height: 28px;
+            text-decoration: none;
+            color: #000;
+        }
+
+        .start-logo {
+            width: 16px;
+            height: 16px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 1px;
+        }
+
+        .start-logo span:nth-child(1) { background: #ff0000; }
+        .start-logo span:nth-child(2) { background: #00ff00; }
+        .start-logo span:nth-child(3) { background: #0000ff; }
+        .start-logo span:nth-child(4) { background: #ffff00; }
+
+        .taskbar-buttons {
+            display: flex;
+            gap: 3px;
+            margin-left: 6px;
+            flex: 1;
+        }
+
+        .taskbar-btn {
+            background-color: #c0c0c0;
+            border: 2px solid;
+            border-color: #808080 #ffffff #ffffff #808080;
+            padding: 2px 6px;
+            font-family: 'MS Sans Serif', Tahoma, Arial, sans-serif;
+            font-size: 11px;
+            height: 26px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 140px;
+        }
+
+        .taskbar-tray {
+            margin-left: auto;
+            border: 1px solid;
+            border-color: #808080 #ffffff #ffffff #808080;
+            padding: 2px 12px;
+            font-size: 11px;
+            height: 26px;
+            display: flex;
+            align-items: center;
+        }
+
+        @media (max-width: 900px) {
+            .bento { grid-template-columns: repeat(2, 1fr); padding-left: 0; }
+            .w-hero { grid-column: span 2; grid-row: span 1; }
+            .w-experience { grid-column: span 2; }
+            .w-projects { grid-column: span 2; }
+            .back-icon { position: static; margin-bottom: 12px; flex-direction: row; width: auto; }
+        }
+
+        @media (max-width: 500px) {
+            .bento { grid-template-columns: 1fr; }
+            .w-hero, .w-contact, .w-education, .w-skills, .w-experience, .w-projects { grid-column: span 1; }
+        }
+    </style>
+</head>
+<body>
+
+<a href="../index.html" class="back-icon">
+    <svg width="32" height="32" viewBox="0 0 32 32">
+        <rect x="4" y="6" width="24" height="20" fill="#808080" stroke="#000" stroke-width="1"/>
+        <rect x="5" y="7" width="22" height="18" fill="#c0c0c0"/>
+        <rect x="6" y="8" width="20" height="14" fill="#fffff0"/>
+        <line x1="8" y1="12" x2="24" y2="12" stroke="#000" stroke-width="0.5"/>
+        <line x1="8" y1="15" x2="20" y2="15" stroke="#000" stroke-width="0.5"/>
+        <line x1="8" y1="18" x2="22" y2="18" stroke="#000" stroke-width="0.5"/>
+        <rect x="11" y="24" width="10" height="2" fill="#808080" stroke="#000" stroke-width="0.5"/>
+        <rect x="8" y="25" width="16" height="2" fill="#808080" stroke="#000" stroke-width="0.5"/>
+    </svg>
+    <span class="icon-label">Back to Portfolio</span>
+</a>
+
+<div class="bento">
+
+    <!-- Hero: 2x2 -->
+    <div class="window w-hero">
+        <div class="title-bar">
+            <span class="title-bar-text">Notepad - about_me.txt</span>
+            <div class="title-bar-controls"><span>_</span><span>&#9633;</span><span>&times;</span></div>
+        </div>
+        <div class="menu-bar">
+            <span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>S</u>earch</span><span><u>H</u>elp</span>
+        </div>
+        <div class="notepad-content">
+<pre>
+┌──────────────────────────────────────────────┐
+│                                              │
+│  <span class="bold">____                                  </span>  │
+│ <span class="bold">/ ___|__ _ _ __ ___   ___ _ __ ___  _ __</span>  │
+│<span class="bold">| |   / _` | '_ ` _ \ / _ \ '__/ _ \| '_ \</span> │
+│<span class="bold">| |__| (_| | | | | | |  __/ | | (_) | | | |</span> │
+│ <span class="bold">\____\__,_|_| |_| |_|\___|_|  \___/|_| |_|</span> │
+│                                              │
+│  <span class="bold"> _                                     </span>  │
+│  <span class="bold">| |    ___  ___                        </span>  │
+│  <span class="bold">| |   / _ \/ _ \                       </span>  │
+│  <span class="bold">| |__|  __/  __/                       </span>  │
+│  <span class="bold">|_____\___|\___|                       </span>  │
+│                                              │
+│  CS grad student at UChicago.                │
+│  Data analyst, Python developer,             │
+│  and builder of things.                      │
+│                                              │
+└──────────────────────────────────────────────┘
+</pre>
+        </div>
+        <div class="status-bar"><span class="status-bar-field">Ln 1, Col 1</span></div>
+    </div>
+
+    <!-- Contact -->
+    <div class="window w-contact">
+        <div class="title-bar">
+            <span class="title-bar-text">Notepad - contact.txt</span>
+            <div class="title-bar-controls"><span>_</span><span>&#9633;</span><span>&times;</span></div>
+        </div>
+        <div class="menu-bar">
+            <span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>S</u>earch</span><span><u>H</u>elp</span>
+        </div>
+        <div class="notepad-content">
+<pre>
+┌─── <span class="heading">CONTACT</span> ────────────────────────────────┐
+│                                              │
+│  Email ··· <a href="mailto:cameronmlee.home@gmail.com">cameronmlee.home@gmail.com</a>      │
+│  LinkedIn  <a href="https://linkedin.com/in/cameronmlee/">linkedin.com/in/cameronmlee/</a>    │
+│  GitHub ·· <a href="https://github.com/cmlee2">github.com/cmlee2</a>               │
+│                                              │
+└──────────────────────────────────────────────┘
+</pre>
+        </div>
+        <div class="status-bar"><span class="status-bar-field">3 links</span></div>
+    </div>
+
+    <!-- Education -->
+    <div class="window w-education">
+        <div class="title-bar">
+            <span class="title-bar-text">Notepad - education.txt</span>
+            <div class="title-bar-controls"><span>_</span><span>&#9633;</span><span>&times;</span></div>
+        </div>
+        <div class="menu-bar">
+            <span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>S</u>earch</span><span><u>H</u>elp</span>
+        </div>
+        <div class="notepad-content">
+<pre>
+┌─── <span class="heading">EDUCATION</span> ──────────────────────────────┐
+│                                              │
+│  <span class="bold">University of Chicago</span>                      │
+│  ├── MS Computer Science                     │
+│  ├── Expected June 2026                      │
+│  └── <span class="meta">Databases, ML, Applied FinTech</span>       │
+│                                              │
+│  <span class="bold">UCLA</span>                                       │
+│  ├── BA Business Econ + BA Psychology        │
+│  ├── June 2021                               │
+│  └── <span class="meta">Behavioral Econ, Econometrics</span>        │
+│                                              │
+└──────────────────────────────────────────────┘
+</pre>
+        </div>
+        <div class="status-bar"><span class="status-bar-field">2 schools</span></div>
+    </div>
+
+    <!-- Skills -->
+    <div class="window w-skills">
+        <div class="title-bar">
+            <span class="title-bar-text">Notepad - skills.txt</span>
+            <div class="title-bar-controls"><span>_</span><span>&#9633;</span><span>&times;</span></div>
+        </div>
+        <div class="menu-bar">
+            <span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>S</u>earch</span><span><u>H</u>elp</span>
+        </div>
+        <div class="notepad-content">
+<pre>
+┌─── <span class="heading">SKILLS</span> ─────────────────────────────────┐
+│                                              │
+│  <span class="bold">Languages:</span>                                 │
+│  ├── Python · SQL · HTML · JavaScript        │
+│                                              │
+│  <span class="bold">Libraries:</span>                                 │
+│  ├── Pandas · NumPy · Sci-Kit Learn          │
+│  ├── FastAPI                                 │
+│                                              │
+│  <span class="bold">Data &amp; Cloud:</span>                              │
+│  ├── Snowflake · Azure Data Factory          │
+│  ├── Databricks · SQL Server                 │
+│  └── Power BI                                │
+│                                              │
+└──────────────────────────────────────────────┘
+</pre>
+        </div>
+        <div class="status-bar"><span class="status-bar-field">13 skills</span></div>
+    </div>
+
+    <!-- Experience: full width -->
+    <div class="window w-experience">
+        <div class="title-bar">
+            <span class="title-bar-text">Notepad - experience.txt</span>
+            <div class="title-bar-controls"><span>_</span><span>&#9633;</span><span>&times;</span></div>
+        </div>
+        <div class="menu-bar">
+            <span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>S</u>earch</span><span><u>H</u>elp</span>
+        </div>
+        <div class="notepad-content">
+<pre>
+┌─── <span class="heading">EXPERIENCE</span> ────────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                                  │
+│  <span class="bold">UnitedHealth Group Inc.</span>                                             Chicago, IL (Remote)        │
+│  <span class="meta">Data Analyst · Aug 2024 – Feb 2026</span>                                                            │
+│  ├── Build/maintain PowerBI dashboards tracking KPIs across 100M+ records                        │
+│  ├── Develop data pipelines in Azure Data Factory and Snowflake                                  │
+│  ├── 66% reduction in weekly refresh time (48hrs → 16hrs)                                        │
+│  └── Automate deliverables with ADF, Python, Databricks — 33% less manual effort                 │
+│                                                                                                  │
+│  <span class="meta">Python Developer · Oct 2023 – Mar 2024</span>                                                        │
+│  ├── Migrated 5 Tableau dashboards to Power BI, 30% faster refresh                               │
+│  └── Redesigned nationwide membership dashboards                                                 │
+│                                                                                                  │
+│  ────────────────────────────────────────────────────────────────────────────────────────         │
+│                                                                                                  │
+│  <span class="bold">Metadoc.ai</span>                                                          Los Angeles, CA (Remote)    │
+│  <span class="meta">Data Analyst · Jun–Oct 2023</span>                                                                    │
+│  ├── Prepared unstructured datasets in Python for predictive models                              │
+│  ├── Authored standardized ETL docs for team of six                                              │
+│  └── Performed SWOT and market sizing analyses                                                   │
+│                                                                                                  │
+└──────────────────────────────────────────────────────────────────────────────────────────────────┘
+</pre>
+        </div>
+        <div class="status-bar"><span class="status-bar-field">3 positions</span></div>
+    </div>
+
+    <!-- Projects -->
+    <div class="window w-projects">
+        <div class="title-bar">
+            <span class="title-bar-text">Notepad - projects.txt</span>
+            <div class="title-bar-controls"><span>_</span><span>&#9633;</span><span>&times;</span></div>
+        </div>
+        <div class="menu-bar">
+            <span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>S</u>earch</span><span><u>H</u>elp</span>
+        </div>
+        <div class="notepad-content">
+<pre>
+┌─── <span class="heading">PROJECTS</span> ───────────────────────────────┐
+│                                              │
+│  <span class="bold">Artist and Song Ranker</span>                      │
+│  <span class="meta">Mar–Jun 2025</span>                               │
+│  ├── FastAPI + last.fm API                   │
+│  ├── Ranking algorithm for preferences       │
+│  └── JSON persistence + modular Python       │
+│                                              │
+│  <span class="bold">Research Assistant, U of Oregon</span>             │
+│  <span class="meta">Dec 2021–Jan 2023</span>                          │
+│  ├── Co-authored peer-reviewed paper         │
+│  ├── Data collection &amp; analysis in R         │
+│  └── Literature reviews &amp; manuscript prep    │
+│                                              │
+└──────────────────────────────────────────────┘
+</pre>
+        </div>
+        <div class="status-bar"><span class="status-bar-field">2 projects</span></div>
+    </div>
+
+    <!-- Certificate -->
+    <div class="window w-projects">
+        <div class="title-bar">
+            <span class="title-bar-text">Notepad - certs.txt</span>
+            <div class="title-bar-controls"><span>_</span><span>&#9633;</span><span>&times;</span></div>
+        </div>
+        <div class="menu-bar">
+            <span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>S</u>earch</span><span><u>H</u>elp</span>
+        </div>
+        <div class="notepad-content">
+<pre>
+┌─── <span class="heading">CERTIFICATES</span> ──────────────────────────┐
+│                                              │
+│  Data Analytics Bootcamp                     │
+│  University of California, Irvine            │
+│  <span class="meta">2023</span>                                       │
+│                                              │
+└──────────────────────────────────────────────┘
+</pre>
+        </div>
+        <div class="status-bar"><span class="status-bar-field">1 cert</span></div>
+    </div>
+
+</div>
+
+<!-- Taskbar -->
+<div class="taskbar">
+    <a href="../index.html" class="start-button">
+        <div class="start-logo">
+            <span></span><span></span><span></span><span></span>
+        </div>
+        Start
+    </a>
+    <div class="taskbar-buttons">
+        <div class="taskbar-btn">about_me.txt</div>
+        <div class="taskbar-btn">experience.txt</div>
+        <div class="taskbar-btn">skills.txt</div>
+    </div>
+    <div class="taskbar-tray">12:00 AM</div>
+</div>
+
+</body>
+</html>
