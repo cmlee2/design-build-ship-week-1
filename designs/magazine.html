@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cameron Lee — Portfolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@400;600;700;900&family=Lora:ital,wght@0,400;0,700;1,400&display=swap');
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --red: #c41e3a;
+            --black: #111;
+            --white: #fafafa;
+            --gray: #666;
+            --light-gray: #e8e8e8;
+        }
+
+        body {
+            background: var(--white);
+            color: var(--black);
+            font-family: 'Lora', Georgia, serif;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        a {
+            color: var(--red);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* ── Back Link ── */
+        .back-link {
+            position: fixed;
+            top: 24px;
+            left: 24px;
+            z-index: 100;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--black);
+            background: var(--white);
+            border: 2px solid var(--black);
+            padding: 8px 16px;
+        }
+
+        .back-link:hover {
+            background: var(--black);
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        /* ── Hero / Masthead ── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 80px 40px;
+            border-bottom: 6px solid var(--black);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: 'PORTFOLIO';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Inter', sans-serif;
+            font-weight: 900;
+            font-size: 18vw;
+            color: rgba(0, 0, 0, 0.03);
+            letter-spacing: 0.05em;
+            white-space: nowrap;
+            pointer-events: none;
+        }
+
+        .hero-issue {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 24px;
+        }
+
+        .hero-name {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: clamp(4rem, 12vw, 10rem);
+            line-height: 0.9;
+            letter-spacing: -0.03em;
+            color: var(--black);
+            margin-bottom: 24px;
+        }
+
+        .hero-name span {
+            display: block;
+            color: var(--red);
+        }
+
+        .hero-rule {
+            width: 80px;
+            height: 4px;
+            background: var(--red);
+            border: none;
+            margin: 0 auto 24px;
+        }
+
+        .hero-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            font-size: 0.85rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--gray);
+            max-width: 600px;
+        }
+
+        /* ── Section Wrapper ── */
+        .spread {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 40px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .spread:last-child {
+            border-bottom: none;
+        }
+
+        /* ── Section Headers ── */
+        .section-label {
+            font-family: 'Inter', sans-serif;
+            font-weight: 900;
+            font-size: 0.65rem;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 8px;
+        }
+
+        .section-number {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: 5rem;
+            line-height: 1;
+            color: var(--light-gray);
+            margin-bottom: -10px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: 2.8rem;
+            line-height: 1.1;
+            color: var(--black);
+            margin-bottom: 32px;
+            max-width: 600px;
+        }
+
+        /* ── Drop Cap ── */
+        .drop-cap::first-letter {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: 4.2em;
+            float: left;
+            line-height: 0.8;
+            margin: 6px 12px 0 0;
+            color: var(--red);
+        }
+
+        /* ── Multi-Column Text ── */
+        .columns-2 {
+            column-count: 2;
+            column-gap: 48px;
+            column-rule: 1px solid var(--light-gray);
+        }
+
+        .columns-2 p {
+            margin-bottom: 1em;
+            break-inside: avoid;
+        }
+
+        /* ── Pull Quote ── */
+        .pull-quote {
+            border-left: 4px solid var(--red);
+            border-right: 4px solid var(--red);
+            padding: 32px 40px;
+            margin: 48px 0;
+            text-align: center;
+        }
+
+        .pull-quote p {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.6rem;
+            line-height: 1.5;
+            color: var(--black);
+        }
+
+        .pull-quote cite {
+            display: block;
+            margin-top: 16px;
+            font-family: 'Inter', sans-serif;
+            font-style: normal;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gray);
+        }
+
+        /* ── Education Spread ── */
+        .edu-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            margin-top: 16px;
+        }
+
+        .edu-card {
+            border-top: 3px solid var(--black);
+            padding-top: 20px;
+        }
+
+        .edu-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.4rem;
+            margin-bottom: 4px;
+        }
+
+        .edu-card .degree {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 8px;
+        }
+
+        .edu-card .date {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: var(--gray);
+            margin-bottom: 8px;
+        }
+
+        .edu-card .coursework {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        /* ── Experience Cards ── */
+        .exp-entry {
+            margin-bottom: 56px;
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 40px;
+        }
+
+        .exp-entry:last-child {
+            margin-bottom: 0;
+        }
+
+        .exp-meta {
+            border-right: 2px solid var(--light-gray);
+            padding-right: 24px;
+        }
+
+        .exp-meta .company {
+            font-family: 'Inter', sans-serif;
+            font-weight: 900;
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--black);
+        }
+
+        .exp-meta .dates {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            color: var(--gray);
+            margin-top: 4px;
+        }
+
+        .exp-meta .location {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            color: var(--gray);
+        }
+
+        .exp-body h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .exp-body ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .exp-body li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .exp-body li::before {
+            content: '\2014';
+            position: absolute;
+            left: 0;
+            color: var(--red);
+            font-weight: 700;
+        }
+
+        .exp-body .highlight {
+            font-weight: 700;
+            color: var(--red);
+        }
+
+        /* ── Projects ── */
+        .project-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+        }
+
+        .project-card {
+            border: 2px solid var(--black);
+            padding: 32px;
+            position: relative;
+        }
+
+        .project-card::before {
+            content: attr(data-number);
+            position: absolute;
+            top: -16px;
+            left: 24px;
+            background: var(--red);
+            color: var(--white);
+            font-family: 'Inter', sans-serif;
+            font-weight: 900;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            padding: 4px 12px;
+        }
+
+        .project-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin-bottom: 4px;
+        }
+
+        .project-card .project-date {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            color: var(--gray);
+            margin-bottom: 12px;
+        }
+
+        .project-card p {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        /* ── Skills ── */
+        .skills-columns {
+            column-count: 3;
+            column-gap: 40px;
+            column-rule: 1px solid var(--light-gray);
+            margin-top: 24px;
+        }
+
+        .skill-group {
+            break-inside: avoid;
+            margin-bottom: 24px;
+        }
+
+        .skill-group h4 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 900;
+            font-size: 0.65rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 8px;
+        }
+
+        .skill-group ul {
+            list-style: none;
+        }
+
+        .skill-group li {
+            font-size: 0.9rem;
+            padding: 4px 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        /* ── Contact / Colophon ── */
+        .colophon {
+            background: var(--black);
+            color: var(--white);
+            padding: 80px 40px;
+            text-align: center;
+        }
+
+        .colophon .section-label {
+            color: var(--red);
+        }
+
+        .colophon-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: 3rem;
+            margin-bottom: 32px;
+            color: var(--white);
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            text-align: center;
+        }
+
+        .contact-item .label {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 0.65rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--gray);
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .contact-item a {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.05rem;
+            color: var(--white);
+            border-bottom: 1px solid var(--red);
+            padding-bottom: 2px;
+        }
+
+        .contact-item a:hover {
+            color: var(--red);
+            text-decoration: none;
+        }
+
+        .colophon-footer {
+            margin-top: 48px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gray);
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .hero-name {
+                font-size: clamp(3rem, 15vw, 5rem);
+            }
+
+            .columns-2 {
+                column-count: 1;
+            }
+
+            .edu-grid,
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .exp-entry {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .exp-meta {
+                border-right: none;
+                border-bottom: 1px solid var(--light-gray);
+                padding-right: 0;
+                padding-bottom: 12px;
+            }
+
+            .skills-columns {
+                column-count: 2;
+            }
+
+            .spread {
+                padding: 48px 24px;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                gap: 24px;
+            }
+
+            .back-link {
+                top: 12px;
+                left: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <a href="../index.html" class="back-link">&larr; Back</a>
+
+    <!-- ── HERO / MASTHEAD ── -->
+    <header class="hero">
+        <p class="hero-issue">Issue No. 1 &mdash; Portfolio Edition &mdash; 2026</p>
+        <h1 class="hero-name">Cameron<span>Lee</span></h1>
+        <hr class="hero-rule">
+        <p class="hero-subtitle">Data Analyst &bull; Developer &bull; MS Computer Science Candidate, University of Chicago</p>
+    </header>
+
+    <!-- ── ABOUT / INTRO ── -->
+    <section class="spread">
+        <p class="section-label">From the Editor</p>
+        <p class="section-number">01</p>
+        <h2 class="section-title">A Profile in Data &amp; Development</h2>
+        <div class="columns-2">
+            <p class="drop-cap">Cameron Lee is a computer science graduate student at the University of Chicago with a background in business economics and psychology from UCLA. His work sits at the intersection of data engineering, analytics, and software development, transforming large-scale datasets into actionable business intelligence.</p>
+            <p>With experience spanning enterprise healthcare analytics at UnitedHealth Group to early-stage startup work at Metadoc.ai, Cameron brings a versatile toolkit to every project. He has built and maintained dashboards tracking over 100 million records, engineered data pipelines that cut processing times by two-thirds, and developed automation workflows that significantly reduced manual effort across teams.</p>
+        </div>
+
+        <div class="pull-quote">
+            <p>&ldquo;Turning 100 million records into clarity &mdash; building pipelines, dashboards, and automation that let the data speak.&rdquo;</p>
+            <cite>Cameron Lee, on the work that drives him</cite>
+        </div>
+    </section>
+
+    <!-- ── EDUCATION ── -->
+    <section class="spread">
+        <p class="section-label">Chapter I</p>
+        <p class="section-number">02</p>
+        <h2 class="section-title">Education</h2>
+        <div class="edu-grid">
+            <div class="edu-card">
+                <h3>University of Chicago</h3>
+                <p class="degree">MS Computer Science</p>
+                <p class="date">Expected June 2026</p>
+                <p class="coursework">Coursework: Databases, Machine Learning, Applied Financial Technology</p>
+            </div>
+            <div class="edu-card">
+                <h3>University of California, Los Angeles</h3>
+                <p class="degree">BA Business Economics + BA Psychology</p>
+                <p class="date">June 2021</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── EXPERIENCE ── -->
+    <section class="spread">
+        <p class="section-label">Chapter II</p>
+        <p class="section-number">03</p>
+        <h2 class="section-title">Professional Experience</h2>
+
+        <div class="exp-entry">
+            <div class="exp-meta">
+                <p class="company">UnitedHealth Group Inc.</p>
+                <p class="dates">Aug 2024 &ndash; Feb 2026</p>
+                <p class="location">Chicago, IL (Remote)</p>
+            </div>
+            <div class="exp-body">
+                <h3>Data Analyst</h3>
+                <ul>
+                    <li>Built and maintained Power BI dashboards tracking KPIs across <span class="highlight">100M+ records</span></li>
+                    <li>Developed data pipelines in Azure Data Factory and Snowflake</li>
+                    <li>Achieved a <span class="highlight">66% reduction</span> in weekly refresh time, from 48 hours down to 16 hours</li>
+                    <li>Automated deliverables with ADF, Python, and Databricks &mdash; <span class="highlight">33% less</span> manual effort</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="pull-quote">
+            <p>&ldquo;A 66% reduction in weekly refresh time. 48 hours became 16. That is the power of well-architected pipelines.&rdquo;</p>
+            <cite>On enterprise-scale optimization</cite>
+        </div>
+
+        <div class="exp-entry">
+            <div class="exp-meta">
+                <p class="company">UnitedHealth Group Inc.</p>
+                <p class="dates">Oct 2023 &ndash; Mar 2024</p>
+            </div>
+            <div class="exp-body">
+                <h3>Python Developer</h3>
+                <ul>
+                    <li>Migrated 5 Tableau dashboards to Power BI, achieving <span class="highlight">30% faster</span> refresh times</li>
+                    <li>Redesigned nationwide membership dashboards for improved usability and performance</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="exp-entry">
+            <div class="exp-meta">
+                <p class="company">Metadoc.ai</p>
+                <p class="dates">Jun &ndash; Oct 2023</p>
+                <p class="location">Los Angeles (Remote)</p>
+            </div>
+            <div class="exp-body">
+                <h3>Data Analyst</h3>
+                <ul>
+                    <li>Prepared unstructured datasets in Python for predictive models</li>
+                    <li>Authored standardized ETL documentation for a team of six</li>
+                    <li>Performed SWOT and market sizing analyses to guide product strategy</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── PROJECTS ── -->
+    <section class="spread">
+        <p class="section-label">Chapter III</p>
+        <p class="section-number">04</p>
+        <h2 class="section-title">Selected Projects</h2>
+
+        <div class="project-grid">
+            <div class="project-card" data-number="PROJECT 01">
+                <h3>Artist and Song Ranker</h3>
+                <p class="project-date">March &ndash; June 2025</p>
+                <p>Built with FastAPI and the last.fm API, featuring a custom ranking algorithm with JSON persistence for tracking and comparing musical preferences over time.</p>
+            </div>
+            <div class="project-card" data-number="PROJECT 02">
+                <h3>Research Assistant</h3>
+                <p class="project-date">Dec 2021 &ndash; Jan 2023 &bull; University of Oregon</p>
+                <p>Co-authored a peer-reviewed psychology paper. Conducted statistical analysis in R to support published research findings.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── SKILLS ── -->
+    <section class="spread">
+        <p class="section-label">Chapter IV</p>
+        <p class="section-number">05</p>
+        <h2 class="section-title">Technical Skills</h2>
+
+        <div class="skills-columns">
+            <div class="skill-group">
+                <h4>Languages</h4>
+                <ul>
+                    <li>Python</li>
+                    <li>SQL</li>
+                    <li>HTML</li>
+                    <li>JavaScript</li>
+                </ul>
+            </div>
+            <div class="skill-group">
+                <h4>Libraries &amp; Frameworks</h4>
+                <ul>
+                    <li>Pandas</li>
+                    <li>NumPy</li>
+                    <li>Scikit-Learn</li>
+                    <li>FastAPI</li>
+                </ul>
+            </div>
+            <div class="skill-group">
+                <h4>Platforms &amp; Tools</h4>
+                <ul>
+                    <li>Snowflake</li>
+                    <li>Azure Data Factory</li>
+                    <li>Databricks</li>
+                    <li>SQL Server</li>
+                    <li>Power BI</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── CONTACT / COLOPHON ── -->
+    <footer class="colophon">
+        <p class="section-label">Get in Touch</p>
+        <h2 class="colophon-title">Contact</h2>
+        <div class="contact-links">
+            <div class="contact-item">
+                <span class="label">Email</span>
+                <a href="mailto:cameronmlee.home@gmail.com">cameronmlee.home@gmail.com</a>
+            </div>
+            <div class="contact-item">
+                <span class="label">LinkedIn</span>
+                <a href="https://linkedin.com/in/cameronmlee/">linkedin.com/in/cameronmlee</a>
+            </div>
+            <div class="contact-item">
+                <span class="label">GitHub</span>
+                <a href="https://github.com/cmlee2">github.com/cmlee2</a>
+            </div>
+        </div>
+        <p class="colophon-footer">&copy; 2026 Cameron Lee &bull; All Rights Reserved</p>
+    </footer>
+
+</body>
+</html>

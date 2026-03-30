@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C4M3R0N_L33 // PORTFOLIO [CORRUPTED]</title>
+    <style>
+        @keyframes glitch-shift {
+            0% { transform: translate(0); }
+            20% { transform: translate(-3px, 2px); }
+            40% { transform: translate(3px, -1px); }
+            60% { transform: translate(-1px, -3px); }
+            80% { transform: translate(2px, 1px); }
+            100% { transform: translate(0); }
+        }
+
+        @keyframes glitch-flicker {
+            0% { opacity: 1; }
+            3% { opacity: 0; }
+            6% { opacity: 1; }
+            7% { opacity: 0; }
+            9% { opacity: 1; }
+            50% { opacity: 1; }
+            52% { opacity: 0.7; }
+            53% { opacity: 1; }
+            90% { opacity: 1; }
+            92% { opacity: 0; }
+            94% { opacity: 1; }
+        }
+
+        @keyframes glitch-clip {
+            0% { clip-path: inset(0 0 95% 0); }
+            5% { clip-path: inset(40% 0 30% 0); }
+            10% { clip-path: inset(80% 0 5% 0); }
+            15% { clip-path: inset(10% 0 70% 0); }
+            20% { clip-path: inset(60% 0 10% 0); }
+            25% { clip-path: inset(0 0 50% 0); }
+            30% { clip-path: inset(30% 0 40% 0); }
+            35% { clip-path: inset(70% 0 15% 0); }
+            40% { clip-path: inset(5% 0 80% 0); }
+            45% { clip-path: inset(50% 0 20% 0); }
+            50% { clip-path: inset(20% 0 60% 0); }
+            55% { clip-path: inset(90% 0 2% 0); }
+            60% { clip-path: inset(15% 0 75% 0); }
+            65% { clip-path: inset(45% 0 35% 0); }
+            70% { clip-path: inset(75% 0 10% 0); }
+            75% { clip-path: inset(25% 0 55% 0); }
+            80% { clip-path: inset(85% 0 5% 0); }
+            85% { clip-path: inset(35% 0 45% 0); }
+            90% { clip-path: inset(65% 0 20% 0); }
+            95% { clip-path: inset(10% 0 85% 0); }
+            100% { clip-path: inset(0 0 95% 0); }
+        }
+
+        @keyframes scanline-scroll {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 100%; }
+        }
+
+        @keyframes color-shift {
+            0% { color: #ffffff; }
+            25% { color: #ff0000; }
+            50% { color: #00ffff; }
+            75% { color: #ff0000; }
+            100% { color: #ffffff; }
+        }
+
+        @keyframes tear {
+            0% { transform: translateX(0); }
+            15% { transform: translateX(-8px); }
+            30% { transform: translateX(5px); }
+            45% { transform: translateX(-3px); }
+            60% { transform: translateX(10px); }
+            75% { transform: translateX(-5px); }
+            90% { transform: translateX(2px); }
+            100% { transform: translateX(0); }
+        }
+
+        @keyframes block-glitch {
+            0% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+            10% { clip-path: polygon(0 0, 100% 0, 100% 45%, 60% 45%, 60% 55%, 100% 55%, 100% 100%, 0 100%); }
+            20% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+            50% { clip-path: polygon(0 0, 40% 0, 40% 30%, 0 30%, 0 60%, 100% 60%, 100% 100%, 0 100%); }
+            60% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+            100% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #111;
+            color: #ffffff;
+            font-family: 'Courier New', Courier, monospace;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Scanline overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                to bottom,
+                transparent,
+                transparent 2px,
+                rgba(0, 0, 0, 0.15) 2px,
+                rgba(0, 0, 0, 0.15) 4px
+            );
+            pointer-events: none;
+            z-index: 9999;
+            animation: scanline-scroll 8s linear infinite;
+        }
+
+        .back-link {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            color: #00ffff;
+            text-decoration: none;
+            font-size: 14px;
+            z-index: 100;
+            animation: glitch-flicker 4s infinite;
+            border: 1px solid #00ffff;
+            padding: 5px 12px;
+        }
+
+        .back-link:hover {
+            background: #00ffff;
+            color: #111;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 30px 80px;
+        }
+
+        /* --- GLITCH HEADING --- */
+        .glitch-title {
+            font-size: 4rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            position: relative;
+            display: inline-block;
+            color: #ffffff;
+            animation: glitch-shift 0.5s infinite;
+            margin-bottom: 10px;
+            letter-spacing: 4px;
+        }
+
+        .glitch-title::before,
+        .glitch-title::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glitch-title::before {
+            color: #ff0000;
+            z-index: -1;
+            animation: glitch-clip 3s infinite linear, glitch-shift 0.4s infinite reverse;
+            left: 3px;
+            top: -2px;
+        }
+
+        .glitch-title::after {
+            color: #00ffff;
+            z-index: -1;
+            animation: glitch-clip 2s infinite linear reverse, glitch-shift 0.6s infinite;
+            left: -3px;
+            top: 2px;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: #00ffff;
+            margin-bottom: 50px;
+            animation: glitch-flicker 5s infinite;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            position: relative;
+            left: 4px;
+        }
+
+        .subtitle::before {
+            content: '> ';
+            color: #ff0000;
+        }
+
+        /* --- SECTION HEADINGS --- */
+        .section-heading {
+            font-size: 1.8rem;
+            color: #ff0000;
+            text-transform: uppercase;
+            margin-top: 60px;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+            letter-spacing: 3px;
+            border-bottom: 2px solid #ff0000;
+            padding-bottom: 5px;
+            animation: tear 4s infinite;
+        }
+
+        .section-heading::before,
+        .section-heading::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .section-heading::before {
+            color: #00ffff;
+            left: 2px;
+            top: -1px;
+            z-index: -1;
+            animation: glitch-clip 2.5s infinite linear;
+        }
+
+        .section-heading::after {
+            color: #ff0000;
+            left: -2px;
+            top: 1px;
+            z-index: -1;
+            clip-path: inset(50% 0 20% 0);
+            animation: glitch-clip 3.5s infinite linear reverse;
+        }
+
+        /* --- CONTACT --- */
+        .contact-block {
+            border: 1px solid #333;
+            padding: 20px;
+            margin-top: 15px;
+            position: relative;
+            background: rgba(255, 0, 0, 0.03);
+            animation: block-glitch 8s infinite;
+        }
+
+        .contact-block a {
+            color: #00ffff;
+            text-decoration: none;
+            display: block;
+            margin: 6px 0;
+            font-size: 0.9rem;
+        }
+
+        .contact-block a:hover {
+            color: #ff0000;
+            text-decoration: line-through;
+        }
+
+        .contact-block a::before {
+            content: '// ';
+            color: #555;
+        }
+
+        /* --- EDUCATION --- */
+        .edu-item {
+            margin-bottom: 18px;
+            padding-left: 15px;
+            border-left: 3px solid #ff0000;
+            position: relative;
+        }
+
+        .edu-item:nth-child(even) {
+            transform: translateX(8px);
+        }
+
+        .edu-school {
+            font-size: 1.05rem;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .edu-degree {
+            color: #00ffff;
+            font-size: 0.9rem;
+        }
+
+        .edu-date {
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        /* --- EXPERIENCE --- */
+        .exp-item {
+            margin-bottom: 30px;
+            padding: 15px 20px;
+            border: 1px solid #222;
+            position: relative;
+            background: rgba(0, 255, 255, 0.02);
+        }
+
+        .exp-item:nth-child(odd) {
+            transform: translateX(-5px) rotate(-0.3deg);
+        }
+
+        .exp-item:nth-child(even) {
+            transform: translateX(5px) rotate(0.2deg);
+        }
+
+        .exp-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #ff0000, transparent 40%, #00ffff 60%, transparent);
+        }
+
+        .exp-company {
+            font-size: 1.05rem;
+            color: #ff0000;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .exp-role {
+            color: #00ffff;
+            font-size: 0.95rem;
+            margin-bottom: 2px;
+        }
+
+        .exp-date {
+            color: #555;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+
+        .exp-item ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .exp-item li {
+            color: #ccc;
+            font-size: 0.85rem;
+            margin: 5px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .exp-item li::before {
+            content: '>';
+            position: absolute;
+            left: 0;
+            color: #ff0000;
+        }
+
+        /* --- PROJECTS --- */
+        .project-item {
+            margin-bottom: 20px;
+            padding: 12px 18px;
+            border-left: 3px solid #00ffff;
+            background: rgba(0, 255, 255, 0.03);
+            position: relative;
+        }
+
+        .project-item:nth-child(odd) {
+            animation: tear 6s infinite;
+        }
+
+        .project-name {
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .project-date {
+            color: #555;
+            font-size: 0.8rem;
+        }
+
+        .project-desc {
+            color: #aaa;
+            font-size: 0.85rem;
+            margin-top: 5px;
+        }
+
+        /* --- SKILLS --- */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .skill-tag {
+            border: 1px solid #ff0000;
+            color: #ffffff;
+            padding: 4px 12px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            position: relative;
+        }
+
+        .skill-tag:nth-child(3n) {
+            border-color: #00ffff;
+            color: #00ffff;
+            animation: glitch-flicker 6s infinite;
+        }
+
+        .skill-tag:nth-child(5n) {
+            transform: translateY(3px);
+        }
+
+        .skill-tag:nth-child(7n) {
+            transform: rotate(1deg) translateX(-2px);
+        }
+
+        /* --- CORRUPTION ARTIFACTS --- */
+        .corrupt-bar {
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #ff0000, #00ffff, #ff0000);
+            margin: 40px 0;
+            animation: glitch-shift 0.3s infinite;
+        }
+
+        .corrupt-text {
+            color: #333;
+            font-size: 0.65rem;
+            overflow: hidden;
+            white-space: nowrap;
+            margin: 5px 0;
+            animation: color-shift 3s infinite;
+        }
+
+        .error-tag {
+            display: inline-block;
+            background: #ff0000;
+            color: #000;
+            font-size: 0.6rem;
+            padding: 1px 6px;
+            margin-left: 10px;
+            animation: glitch-flicker 2s infinite;
+            text-transform: uppercase;
+            vertical-align: middle;
+        }
+
+        /* Misaligned decorative block */
+        .misaligned-block {
+            position: absolute;
+            width: 120px;
+            height: 40px;
+            border: 1px solid rgba(255, 0, 0, 0.3);
+            right: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        /* Footer */
+        .footer-corrupt {
+            margin-top: 80px;
+            text-align: center;
+            color: #333;
+            font-size: 0.7rem;
+            animation: glitch-flicker 3s infinite;
+        }
+    </style>
+</head>
+<body>
+
+    <a href="../index.html" class="back-link">&lt; BACK</a>
+
+    <div class="container">
+
+        <!-- HEADER -->
+        <div style="margin-top: 40px;">
+            <div class="corrupt-text">0x4552524F52 // BUFFER_OVERFLOW // SEGFAULT AT 0x00000000 // MEMORY CORRUPTED</div>
+            <h1 class="glitch-title" data-text="Cameron Lee">Cameron Lee</h1>
+            <div class="subtitle">portfolio_v3.broken.bak</div>
+        </div>
+
+        <div class="corrupt-bar"></div>
+
+        <!-- CONTACT -->
+        <div style="position: relative;">
+            <h2 class="section-heading" data-text="Contact">Contact</h2>
+            <span class="error-tag">WARN: data leak</span>
+            <div class="contact-block">
+                <a href="mailto:cameronmlee.home@gmail.com">cameronmlee.home@gmail.com</a>
+                <a href="https://linkedin.com/in/cameronmlee/" target="_blank">linkedin.com/in/cameronmlee/</a>
+                <a href="https://github.com/cmlee2" target="_blank">github.com/cmlee2</a>
+            </div>
+        </div>
+
+        <div class="corrupt-bar"></div>
+        <div class="corrupt-text">ERR_CONNECTION_RESET // PACKET LOSS 47% // RETRY FAILED // ABORT ABORT ABORT</div>
+
+        <!-- EDUCATION -->
+        <div style="position: relative;">
+            <h2 class="section-heading" data-text="Education">Education</h2>
+            <span class="error-tag">CORRUPTED</span>
+            <div style="margin-top: 15px;">
+                <div class="edu-item">
+                    <div class="edu-school">University of Chicago</div>
+                    <div class="edu-degree">MS Computer Science</div>
+                    <div class="edu-date">Expected June 2026</div>
+                </div>
+                <div class="edu-item">
+                    <div class="edu-school">UCLA</div>
+                    <div class="edu-degree">BA Business Economics + BA Psychology</div>
+                    <div class="edu-date">June 2021</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="corrupt-bar"></div>
+
+        <!-- EXPERIENCE -->
+        <div style="position: relative;">
+            <h2 class="section-heading" data-text="Experience">Experience</h2>
+            <span class="error-tag">SEGFAULT</span>
+
+            <div style="margin-top: 15px;">
+                <div class="exp-item">
+                    <div class="misaligned-block"></div>
+                    <div class="exp-company">UnitedHealth Group Inc.</div>
+                    <div class="exp-role">Data Analyst</div>
+                    <div class="exp-date">Aug 2024 &ndash; Feb 2026</div>
+                    <ul>
+                        <li>Build/maintain PowerBI dashboards tracking KPIs across 100M+ records</li>
+                        <li>Develop data pipelines in Azure Data Factory and Snowflake</li>
+                        <li>66% reduction in weekly refresh time (48hrs to 16hrs)</li>
+                        <li>Automate deliverables with ADF, Python, Databricks &mdash; 33% less manual effort</li>
+                    </ul>
+                </div>
+
+                <div class="exp-item">
+                    <div class="exp-company">UnitedHealth Group Inc.</div>
+                    <div class="exp-role">Python Developer</div>
+                    <div class="exp-date">Oct 2023 &ndash; Mar 2024</div>
+                    <ul>
+                        <li>Migrated 5 Tableau dashboards to Power BI, 30% faster refresh</li>
+                        <li>Redesigned nationwide membership dashboards</li>
+                    </ul>
+                </div>
+
+                <div class="exp-item">
+                    <div class="misaligned-block"></div>
+                    <div class="exp-company">Metadoc.ai</div>
+                    <div class="exp-role">Data Analyst</div>
+                    <div class="exp-date">Jun &ndash; Oct 2023</div>
+                    <ul>
+                        <li>Prepared unstructured datasets in Python for predictive models</li>
+                        <li>Authored standardized ETL docs for team of six</li>
+                        <li>Performed SWOT and market sizing analyses</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="corrupt-bar"></div>
+        <div class="corrupt-text">FATAL: KERNEL PANIC // STACK SMASHING DETECTED // 0xDEADBEEF // SYSTEM HALTED</div>
+
+        <!-- PROJECTS -->
+        <div style="position: relative;">
+            <h2 class="section-heading" data-text="Projects">Projects</h2>
+            <span class="error-tag">OVERFLOW</span>
+
+            <div style="margin-top: 15px;">
+                <div class="project-item">
+                    <div class="project-name">Artist and Song Ranker</div>
+                    <div class="project-date">Mar &ndash; Jun 2025</div>
+                    <div class="project-desc">FastAPI + last.fm API, ranking algorithm, JSON persistence</div>
+                </div>
+
+                <div class="project-item">
+                    <div class="project-name">Research Assistant, U of Oregon</div>
+                    <div class="project-date">Dec 2021 &ndash; Jan 2023</div>
+                    <div class="project-desc">Co-authored peer-reviewed psych paper, R analysis</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="corrupt-bar"></div>
+
+        <!-- SKILLS -->
+        <div style="position: relative;">
+            <h2 class="section-heading" data-text="Skills">Skills</h2>
+            <span class="error-tag">DUMP</span>
+
+            <div class="skills-grid">
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">SQL</span>
+                <span class="skill-tag">HTML</span>
+                <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">Pandas</span>
+                <span class="skill-tag">NumPy</span>
+                <span class="skill-tag">Sci-Kit Learn</span>
+                <span class="skill-tag">FastAPI</span>
+                <span class="skill-tag">Snowflake</span>
+                <span class="skill-tag">Azure Data Factory</span>
+                <span class="skill-tag">Databricks</span>
+                <span class="skill-tag">SQL Server</span>
+                <span class="skill-tag">Power BI</span>
+            </div>
+        </div>
+
+        <div class="corrupt-bar"></div>
+
+        <!-- FOOTER -->
+        <div class="footer-corrupt">
+            <div class="corrupt-text">// END OF FILE // TRANSMISSION TERMINATED // GOODBYE_WORLD.exe HAS STOPPED RESPONDING //</div>
+            <p style="margin-top: 10px;">[ SYSTEM FAILURE — CAMERON_LEE.EXE — ALL DATA UNRECOVERABLE ]</p>
+        </div>
+
+    </div>
+
+</body>
+</html>

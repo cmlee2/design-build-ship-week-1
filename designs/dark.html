@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cameron Lee | Dark Mode</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background: #0d1117;
+            color: #c9d1d9;
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        a { color: #58a6ff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 32px;
+            color: #484f58;
+            font-size: 0.85rem;
+        }
+
+        header {
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            padding: 32px;
+            margin-bottom: 24px;
+            background: #161b22;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            color: #00ff88;
+            font-weight: normal;
+            margin-bottom: 8px;
+        }
+
+        header h1::before { content: '> '; color: #484f58; }
+
+        .contact-line {
+            color: #8b949e;
+            font-size: 0.85rem;
+        }
+
+        .contact-line a { color: #58a6ff; }
+
+        section {
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            margin-bottom: 16px;
+            background: #161b22;
+            overflow: hidden;
+        }
+
+        section h2 {
+            font-size: 0.9rem;
+            font-weight: normal;
+            color: #00ff88;
+            padding: 12px 24px;
+            background: #0d1117;
+            border-bottom: 1px solid #30363d;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        section h2::before { content: '# '; color: #484f58; }
+
+        .content {
+            padding: 24px;
+        }
+
+        .entry {
+            margin-bottom: 24px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid #21262d;
+        }
+
+        .entry:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .entry h3 {
+            font-size: 1rem;
+            color: #f0f6fc;
+            font-weight: normal;
+        }
+
+        .entry .meta {
+            font-size: 0.8rem;
+            color: #484f58;
+            margin-bottom: 8px;
+        }
+
+        .entry ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .entry ul li {
+            font-size: 0.85rem;
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 4px;
+            color: #8b949e;
+        }
+
+        .entry ul li::before {
+            content: '-';
+            position: absolute;
+            left: 4px;
+            color: #00ff88;
+        }
+
+        .skills-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill {
+            background: #21262d;
+            border: 1px solid #30363d;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: #c9d1d9;
+        }
+
+        footer {
+            text-align: center;
+            padding: 32px 0;
+            color: #30363d;
+            font-size: 0.75rem;
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <a href="../index.html" class="back-link">&larr; back to designs</a>
+
+    <header>
+        <h1>Cameron Lee</h1>
+        <p class="contact-line">
+            <a href="mailto:cameronmlee.home@gmail.com">cameronmlee.home@gmail.com</a> |
+            <a href="https://linkedin.com/in/cameronmlee/">linkedin</a> |
+            <a href="https://github.com/cmlee2">github</a>
+        </p>
+    </header>
+
+    <section>
+        <h2>Education</h2>
+        <div class="content">
+            <div class="entry">
+                <h3>The University of Chicago</h3>
+                <p class="meta">MS in Computer Science // Expected June 2026 // Chicago, IL</p>
+                <p style="font-size:0.85rem;color:#8b949e;">Coursework: Databases, Machine Learning, Applied Financial Technology</p>
+            </div>
+            <div class="entry">
+                <h3>University of California, Los Angeles (UCLA)</h3>
+                <p class="meta">BA Business Economics, BA Psychology // June 2021 // Los Angeles, CA</p>
+                <p style="font-size:0.85rem;color:#8b949e;">Coursework: Behavioral Economics, Econometrics, Pricing and Strategy</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Experience</h2>
+        <div class="content">
+            <div class="entry">
+                <h3>UnitedHealth Group Inc.</h3>
+                <p class="meta">Data Analyst // Aug 2024 &ndash; Feb 2026 // Remote</p>
+                <ul>
+                    <li>Build and maintain PowerBI dashboards tracking KPIs across 100M+ records</li>
+                    <li>Develop data pipelines in Azure Data Factory and Snowflake</li>
+                    <li>66% reduction in weekly refresh time (48hrs &rarr; 16hrs)</li>
+                    <li>Automate deliverables with ADF, Python, Databricks &mdash; 33% less manual effort</li>
+                </ul>
+            </div>
+            <div class="entry">
+                <p class="meta">Python Developer // Oct 2023 &ndash; Mar 2024</p>
+                <ul>
+                    <li>Migrated 5 Tableau dashboards to Power BI, 30% faster refresh</li>
+                    <li>Redesigned nationwide membership dashboards</li>
+                </ul>
+            </div>
+            <div class="entry">
+                <h3>Metadoc.ai</h3>
+                <p class="meta">Data Analyst // Jun &ndash; Oct 2023 // Remote</p>
+                <ul>
+                    <li>Prepared unstructured datasets in Python for predictive models</li>
+                    <li>Authored standardized ETL docs for team of six</li>
+                    <li>Performed SWOT and market sizing analyses</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Projects</h2>
+        <div class="content">
+            <div class="entry">
+                <h3>Artist and Song Ranker</h3>
+                <p class="meta">Mar &ndash; Jun 2025</p>
+                <ul>
+                    <li>FastAPI app integrating last.fm API for song metadata</li>
+                    <li>Ranking algorithm for user preference determination</li>
+                    <li>JSON persistence + modular Python architecture</li>
+                </ul>
+            </div>
+            <div class="entry">
+                <h3>Research Assistant &mdash; University of Oregon</h3>
+                <p class="meta">Dec 2021 &ndash; Jan 2023</p>
+                <ul>
+                    <li>Co-authored peer-reviewed psychology paper (DOI: 10.1007/s10488-023-01276-9)</li>
+                    <li>Data collection and analysis using R</li>
+                    <li>Literature reviews and manuscript preparation</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Skills</h2>
+        <div class="content">
+            <div class="skills-wrap">
+                <span class="skill">Python</span>
+                <span class="skill">SQL</span>
+                <span class="skill">HTML</span>
+                <span class="skill">JavaScript</span>
+                <span class="skill">Pandas</span>
+                <span class="skill">NumPy</span>
+                <span class="skill">Sci-Kit Learn</span>
+                <span class="skill">FastAPI</span>
+                <span class="skill">Snowflake</span>
+                <span class="skill">Azure Data Factory</span>
+                <span class="skill">Databricks</span>
+                <span class="skill">SQL Server</span>
+                <span class="skill">Power BI</span>
+            </div>
+        </div>
+    </section>
+
+    <footer>&copy; 2026 Cameron Lee</footer>
+
+</div>
+
+</body>
+</html>

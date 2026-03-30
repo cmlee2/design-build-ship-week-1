@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cameron Lee — POW! Portfolio</title>
+<style>
+  /* ===== RESET & BASE ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: Impact, 'Arial Black', Gadget, sans-serif;
+    background-color: #fffde6;
+    background-image:
+      radial-gradient(circle, #000 1px, transparent 1px);
+    background-size: 18px 18px;
+    color: #111;
+    min-height: 100vh;
+    padding: 20px;
+    letter-spacing: 0.02em;
+  }
+
+  a { color: inherit; }
+
+  /* ===== BACK LINK ===== */
+  .back-link {
+    display: inline-block;
+    background: #ffdd00;
+    color: #111;
+    text-decoration: none;
+    font-size: 1.1rem;
+    padding: 8px 18px;
+    border: 3px solid #000;
+    border-radius: 6px;
+    transform: rotate(-2deg);
+    transition: transform 0.15s;
+    margin-bottom: 10px;
+  }
+  .back-link:hover { transform: rotate(0deg) scale(1.05); }
+
+  /* ===== WRAPPER ===== */
+  .page-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  /* ===== HERO / TITLE PANEL ===== */
+  .hero {
+    background: #ff0000;
+    border: 4px solid #000;
+    padding: 40px 30px 30px;
+    text-align: center;
+    position: relative;
+    margin-bottom: 40px;
+    transform: rotate(-0.5deg);
+    box-shadow: 8px 8px 0 #000;
+  }
+  .hero h1 {
+    font-size: 3.5rem;
+    text-transform: uppercase;
+    color: #ffdd00;
+    -webkit-text-stroke: 2px #000;
+    text-shadow: 4px 4px 0 #000;
+    margin-bottom: 8px;
+  }
+  .hero .subtitle {
+    font-size: 1.5rem;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* ===== STARBURST LABEL ===== */
+  .starburst {
+    display: inline-block;
+    position: relative;
+    background: #ffdd00;
+    color: #111;
+    font-size: 1.6rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    border: 4px solid #000;
+    margin-bottom: 24px;
+    transform: rotate(-2deg);
+    clip-path: polygon(
+      50% 0%, 63% 10%, 78% 2%, 80% 18%, 98% 20%,
+      90% 35%, 100% 50%, 90% 65%, 98% 80%,
+      80% 82%, 78% 98%, 63% 90%, 50% 100%,
+      37% 90%, 22% 98%, 20% 82%, 2% 80%,
+      10% 65%, 0% 50%, 10% 35%, 2% 20%,
+      20% 18%, 22% 2%, 37% 10%
+    );
+    z-index: 1;
+  }
+  .starburst.red { background: #ff0000; color: #fff; }
+  .starburst.blue { background: #0066ff; color: #fff; }
+
+  /* ===== SECTION ===== */
+  .section {
+    margin-bottom: 45px;
+    text-align: center;
+  }
+
+  /* ===== SPEECH BUBBLE CARD ===== */
+  .bubble {
+    position: relative;
+    background: #fff;
+    border: 3px solid #000;
+    border-radius: 30px;
+    padding: 24px 28px;
+    margin: 0 auto 30px;
+    max-width: 880px;
+    text-align: left;
+    box-shadow: 5px 5px 0 #000;
+    background-image:
+      radial-gradient(circle, rgba(0,102,255,0.07) 1.5px, transparent 1.5px);
+    background-size: 12px 12px;
+  }
+  .bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -22px;
+    left: 50px;
+    width: 0; height: 0;
+    border-style: solid;
+    border-width: 22px 20px 0 20px;
+    border-color: #000 transparent transparent transparent;
+  }
+  .bubble::before {
+    content: '';
+    position: absolute;
+    bottom: -17px;
+    left: 53px;
+    width: 0; height: 0;
+    border-style: solid;
+    border-width: 18px 17px 0 17px;
+    border-color: #fff transparent transparent transparent;
+    z-index: 1;
+  }
+
+  /* Alternate tail direction */
+  .bubble.right::after {
+    left: auto; right: 50px;
+  }
+  .bubble.right::before {
+    left: auto; right: 53px;
+  }
+
+  /* Tilted bubbles for energy */
+  .bubble.tilt-left  { transform: rotate(-0.7deg); }
+  .bubble.tilt-right { transform: rotate(0.7deg); }
+
+  /* ===== THOUGHT BUBBLE (for skills) ===== */
+  .thought {
+    position: relative;
+    background: #ffdd00;
+    border: 3px solid #000;
+    border-radius: 50px;
+    padding: 30px 34px;
+    margin: 0 auto 40px;
+    max-width: 880px;
+    text-align: center;
+    box-shadow: 5px 5px 0 #000;
+  }
+  .thought::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 70px;
+    width: 18px; height: 18px;
+    background: #ffdd00;
+    border: 3px solid #000;
+    border-radius: 50%;
+  }
+  .thought .extra-dot {
+    position: absolute;
+    bottom: -35px;
+    left: 55px;
+    width: 11px; height: 11px;
+    background: #ffdd00;
+    border: 3px solid #000;
+    border-radius: 50%;
+  }
+
+  /* ===== INNER CONTENT STYLES ===== */
+  .bubble h3 {
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    color: #ff0000;
+  }
+  .bubble .role {
+    font-size: 1.05rem;
+    color: #0066ff;
+    margin-bottom: 2px;
+  }
+  .bubble .dates {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 10px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+  }
+  .bubble ul {
+    list-style: none;
+    padding: 0;
+  }
+  .bubble ul li {
+    font-family: 'Arial Black', Arial, sans-serif;
+    font-size: 0.92rem;
+    line-height: 1.55;
+    padding-left: 22px;
+    position: relative;
+    margin-bottom: 5px;
+  }
+  .bubble ul li::before {
+    content: '\2605';
+    position: absolute;
+    left: 0;
+    color: #ff0000;
+    font-size: 0.85rem;
+  }
+
+  .edu-entry { margin-bottom: 12px; }
+  .edu-entry h3 { margin-bottom: 2px; }
+  .edu-entry .degree {
+    font-family: 'Arial Black', Arial, sans-serif;
+    font-size: 0.95rem;
+  }
+
+  /* ===== SKILL TAGS ===== */
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    font-family: 'Arial Black', Arial, sans-serif;
+  }
+  .skill-tag {
+    display: inline-block;
+    padding: 6px 16px;
+    border: 3px solid #000;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 3px 3px 0 #000;
+  }
+  .skill-tag:nth-child(3n+1) { background: #ff0000; color: #fff; transform: rotate(-2deg); }
+  .skill-tag:nth-child(3n+2) { background: #0066ff; color: #fff; transform: rotate(1deg); }
+  .skill-tag:nth-child(3n)   { background: #ffdd00; color: #111; transform: rotate(-1deg); }
+
+  /* ===== CONTACT PANEL ===== */
+  .contact-panel {
+    background: #0066ff;
+    border: 4px solid #000;
+    border-radius: 20px;
+    padding: 28px 30px;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    box-shadow: 6px 6px 0 #000;
+    transform: rotate(0.5deg);
+    background-image:
+      radial-gradient(circle, rgba(255,255,255,0.12) 2px, transparent 2px);
+    background-size: 14px 14px;
+  }
+  .contact-panel a {
+    display: block;
+    color: #ffdd00;
+    font-size: 1.15rem;
+    text-decoration: none;
+    margin: 8px 0;
+    font-family: 'Arial Black', Arial, sans-serif;
+    letter-spacing: 0.02em;
+  }
+  .contact-panel a:hover {
+    color: #fff;
+    text-decoration: underline;
+  }
+
+  /* ===== DECORATIVE CORNER LABELS ===== */
+  .corner-label {
+    position: fixed;
+    font-size: 1.1rem;
+    padding: 8px 16px;
+    border: 3px solid #000;
+    transform: rotate(-12deg);
+    z-index: 10;
+    pointer-events: none;
+    box-shadow: 3px 3px 0 #000;
+  }
+  .corner-label.top-right {
+    top: 20px; right: 20px;
+    background: #ff0000;
+    color: #fff;
+    transform: rotate(8deg);
+  }
+  .corner-label.bottom-left {
+    bottom: 20px; left: 20px;
+    background: #0066ff;
+    color: #fff;
+    transform: rotate(-6deg);
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 2.2rem; }
+    .starburst { font-size: 1.2rem; padding: 12px 20px; }
+    .bubble { padding: 18px 16px; border-radius: 20px; }
+    .corner-label { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Decorative floating labels -->
+<div class="corner-label top-right">POW!</div>
+<div class="corner-label bottom-left">ZAP!</div>
+
+<div class="page-wrapper">
+
+  <a href="../index.html" class="back-link">&larr; BACK</a>
+
+  <!-- ===== HERO ===== -->
+  <div class="hero">
+    <h1>Cameron Lee</h1>
+    <div class="subtitle">Data Analyst &bull; Developer &bull; Problem Solver</div>
+  </div>
+
+  <!-- ===== CONTACT ===== -->
+  <div class="section">
+    <div class="starburst red">BAM! Contact!</div>
+    <div class="contact-panel">
+      <a href="mailto:cameronmlee.home@gmail.com">cameronmlee.home@gmail.com</a>
+      <a href="https://linkedin.com/in/cameronmlee/" target="_blank">linkedin.com/in/cameronmlee</a>
+      <a href="https://github.com/cmlee2" target="_blank">github.com/cmlee2</a>
+    </div>
+  </div>
+
+  <!-- ===== EDUCATION ===== -->
+  <div class="section">
+    <div class="starburst">POW! Education!</div>
+    <div class="bubble tilt-left">
+      <div class="edu-entry">
+        <h3>University of Chicago</h3>
+        <div class="degree">MS Computer Science</div>
+        <div class="dates">Expected June 2026</div>
+      </div>
+      <div class="edu-entry">
+        <h3>UCLA</h3>
+        <div class="degree">BA Business Economics + BA Psychology</div>
+        <div class="dates">June 2021</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== EXPERIENCE ===== -->
+  <div class="section">
+    <div class="starburst blue">ZAP! Experience!</div>
+
+    <div class="bubble tilt-right">
+      <h3>UnitedHealth Group Inc.</h3>
+      <div class="role">Data Analyst</div>
+      <div class="dates">Aug 2024 &ndash; Feb 2026</div>
+      <ul>
+        <li>Build/maintain PowerBI dashboards tracking KPIs across 100M+ records</li>
+        <li>Develop data pipelines in Azure Data Factory and Snowflake</li>
+        <li>66% reduction in weekly refresh time (48hrs to 16hrs)</li>
+        <li>Automate deliverables with ADF, Python, Databricks &mdash; 33% less manual effort</li>
+      </ul>
+    </div>
+
+    <div class="bubble tilt-left right">
+      <h3>UnitedHealth Group Inc.</h3>
+      <div class="role">Python Developer</div>
+      <div class="dates">Oct 2023 &ndash; Mar 2024</div>
+      <ul>
+        <li>Migrated 5 Tableau dashboards to Power BI, 30% faster refresh</li>
+        <li>Redesigned nationwide membership dashboards</li>
+      </ul>
+    </div>
+
+    <div class="bubble tilt-right">
+      <h3>Metadoc.ai</h3>
+      <div class="role">Data Analyst</div>
+      <div class="dates">Jun &ndash; Oct 2023</div>
+      <ul>
+        <li>Prepared unstructured datasets in Python for predictive models</li>
+        <li>Authored standardized ETL docs for team of six</li>
+        <li>Performed SWOT and market sizing analyses</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ===== PROJECTS ===== -->
+  <div class="section">
+    <div class="starburst red">WHAM! Projects!</div>
+
+    <div class="bubble tilt-left right">
+      <h3>Artist and Song Ranker</h3>
+      <div class="dates">Mar &ndash; Jun 2025</div>
+      <ul>
+        <li>FastAPI + last.fm API, ranking algorithm, JSON persistence</li>
+      </ul>
+    </div>
+
+    <div class="bubble tilt-right">
+      <h3>Research Assistant &mdash; U of Oregon</h3>
+      <div class="dates">Dec 2021 &ndash; Jan 2023</div>
+      <ul>
+        <li>Co-authored peer-reviewed psychology paper, R analysis</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ===== SKILLS ===== -->
+  <div class="section">
+    <div class="starburst blue">KAPOW! Skills!</div>
+    <div class="thought">
+      <div class="skill-tags">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">SQL</span>
+        <span class="skill-tag">HTML</span>
+        <span class="skill-tag">JavaScript</span>
+        <span class="skill-tag">Pandas</span>
+        <span class="skill-tag">NumPy</span>
+        <span class="skill-tag">Sci-Kit Learn</span>
+        <span class="skill-tag">FastAPI</span>
+        <span class="skill-tag">Snowflake</span>
+        <span class="skill-tag">Azure Data Factory</span>
+        <span class="skill-tag">Databricks</span>
+        <span class="skill-tag">SQL Server</span>
+        <span class="skill-tag">Power BI</span>
+      </div>
+      <span class="extra-dot"></span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

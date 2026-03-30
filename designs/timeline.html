@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cameron Lee — Timeline</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #f5f5f7;
+            color: #1d1d1f;
+            line-height: 1.6;
+        }
+
+        a {
+            color: #0071e3;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            background: #fff;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .back-link {
+            position: absolute;
+            top: 24px;
+            left: 24px;
+            font-size: 0.9rem;
+            color: #0071e3;
+        }
+
+        .header h1 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 6px;
+        }
+
+        .header .subtitle {
+            font-size: 1.1rem;
+            color: #6e6e73;
+            margin-bottom: 16px;
+        }
+
+        .contact-row {
+            display: flex;
+            justify-content: center;
+            gap: 28px;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+        }
+
+        .contact-row span {
+            color: #6e6e73;
+        }
+
+        /* Skills bar */
+        .skills-bar {
+            text-align: center;
+            padding: 28px 20px;
+            background: #fff;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .skills-bar h2 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #86868b;
+            margin-bottom: 12px;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .skill-tags span {
+            background: #f0f0f5;
+            color: #1d1d1f;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            border: 1px solid #d2d2d7;
+        }
+
+        /* Timeline */
+        .timeline-section {
+            padding: 60px 20px 80px;
+            max-width: 960px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* The vertical center line */
+        .timeline-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 3px;
+            background: #d2d2d7;
+            transform: translateX(-50%);
+        }
+
+        /* Section labels on the timeline */
+        .timeline-label {
+            position: relative;
+            text-align: center;
+            margin: 40px 0 32px;
+            z-index: 2;
+        }
+
+        .timeline-label:first-child {
+            margin-top: 0;
+        }
+
+        .timeline-label span {
+            display: inline-block;
+            background: #1d1d1f;
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 8px 24px;
+            border-radius: 24px;
+        }
+
+        /* Each timeline entry */
+        .timeline-entry {
+            position: relative;
+            width: 45%;
+            padding: 24px 28px;
+            background: #fff;
+            border-radius: 12px;
+            border: 1px solid #e0e0e0;
+            margin-bottom: 40px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .timeline-entry:hover {
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Left-side entries */
+        .timeline-entry.left {
+            margin-left: 0;
+            margin-right: auto;
+        }
+
+        /* Right-side entries */
+        .timeline-entry.right {
+            margin-left: auto;
+            margin-right: 0;
+        }
+
+        /* The dot on the center line */
+        .timeline-entry::before {
+            content: '';
+            position: absolute;
+            top: 32px;
+            width: 16px;
+            height: 16px;
+            background: #fff;
+            border: 3px solid #0071e3;
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .timeline-entry.left::before {
+            right: -8%;
+            transform: translateX(50%);
+        }
+
+        .timeline-entry.right::before {
+            left: -8%;
+            transform: translateX(-50%);
+        }
+
+        /* Connecting line from card to dot */
+        .timeline-entry::after {
+            content: '';
+            position: absolute;
+            top: 39px;
+            height: 2px;
+            background: #d2d2d7;
+            width: 5%;
+        }
+
+        .timeline-entry.left::after {
+            right: -5%;
+        }
+
+        .timeline-entry.right::after {
+            left: -5%;
+        }
+
+        .timeline-entry .date {
+            font-size: 0.78rem;
+            color: #0071e3;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .timeline-entry h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .timeline-entry .org {
+            font-size: 0.92rem;
+            color: #6e6e73;
+            margin-bottom: 4px;
+        }
+
+        .timeline-entry .location {
+            font-size: 0.8rem;
+            color: #86868b;
+            margin-bottom: 10px;
+        }
+
+        .timeline-entry ul {
+            padding-left: 18px;
+            margin: 0;
+        }
+
+        .timeline-entry ul li {
+            font-size: 0.88rem;
+            color: #424245;
+            margin-bottom: 5px;
+            line-height: 1.5;
+        }
+
+        .timeline-entry p {
+            font-size: 0.88rem;
+            color: #424245;
+            line-height: 1.5;
+        }
+
+        /* Color accents per section */
+        .timeline-entry.education::before {
+            border-color: #30d158;
+        }
+
+        .timeline-entry.education .date {
+            color: #248a3d;
+        }
+
+        .label-education span {
+            background: #248a3d;
+        }
+
+        .timeline-entry.experience::before {
+            border-color: #0071e3;
+        }
+
+        .timeline-entry.experience .date {
+            color: #0071e3;
+        }
+
+        .label-experience span {
+            background: #0071e3;
+        }
+
+        .timeline-entry.project::before {
+            border-color: #bf5af2;
+        }
+
+        .timeline-entry.project .date {
+            color: #a020f0;
+        }
+
+        .label-projects span {
+            background: #a020f0;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 32px 20px;
+            font-size: 0.82rem;
+            color: #86868b;
+            border-top: 1px solid #e0e0e0;
+            background: #fff;
+        }
+
+        /* Responsive: stack to one side */
+        @media (max-width: 700px) {
+            .timeline-section::before {
+                left: 24px;
+            }
+
+            .timeline-entry {
+                width: calc(100% - 56px);
+                margin-left: 56px !important;
+                margin-right: 0 !important;
+            }
+
+            .timeline-entry::before {
+                left: -40px !important;
+                right: auto !important;
+                transform: none !important;
+            }
+
+            .timeline-entry::after {
+                left: -24px !important;
+                right: auto !important;
+                width: 24px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .back-link {
+                position: static;
+                display: block;
+                margin-bottom: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <a href="../index.html" class="back-link">&larr; Back</a>
+        <h1>Cameron Lee</h1>
+        <p class="subtitle">Data Analyst &amp; MS Computer Science Student</p>
+        <div class="contact-row">
+            <span><a href="mailto:cameronmlee.home@gmail.com">cameronmlee.home@gmail.com</a></span>
+            <span><a href="https://linkedin.com/in/cameronmlee/" target="_blank">LinkedIn</a></span>
+            <span><a href="https://github.com/cmlee2" target="_blank">GitHub</a></span>
+        </div>
+    </header>
+
+    <div class="skills-bar">
+        <h2>Skills</h2>
+        <div class="skill-tags">
+            <span>Python</span>
+            <span>SQL</span>
+            <span>HTML</span>
+            <span>JavaScript</span>
+            <span>Pandas</span>
+            <span>NumPy</span>
+            <span>Sci-Kit Learn</span>
+            <span>FastAPI</span>
+            <span>Snowflake</span>
+            <span>Azure Data Factory</span>
+            <span>Databricks</span>
+            <span>SQL Server</span>
+            <span>Power BI</span>
+        </div>
+    </div>
+
+    <section class="timeline-section">
+
+        <!-- EDUCATION -->
+        <div class="timeline-label label-education"><span>Education</span></div>
+
+        <div class="timeline-entry education left">
+            <div class="date">Expected June 2026</div>
+            <h3>MS Computer Science</h3>
+            <div class="org">University of Chicago</div>
+            <p>Coursework: Databases, Machine Learning, Applied Financial Technology</p>
+        </div>
+
+        <div class="timeline-entry education right">
+            <div class="date">June 2021</div>
+            <h3>BA Business Economics &amp; BA Psychology</h3>
+            <div class="org">University of California, Los Angeles</div>
+            <p>Coursework: Behavioral Economics, Econometrics, Pricing and Strategy</p>
+        </div>
+
+        <!-- EXPERIENCE -->
+        <div class="timeline-label label-experience"><span>Experience</span></div>
+
+        <div class="timeline-entry experience left">
+            <div class="date">Aug 2024 &ndash; Feb 2026</div>
+            <h3>Data Analyst</h3>
+            <div class="org">UnitedHealth Group Inc.</div>
+            <div class="location">Chicago, IL (Remote)</div>
+            <ul>
+                <li>Build and maintain PowerBI dashboards tracking KPIs across 100M+ records</li>
+                <li>Develop data pipelines in Azure Data Factory and Snowflake</li>
+                <li>Achieved 66% reduction in weekly refresh time (48 hrs to 16 hrs)</li>
+                <li>Automate deliverables with ADF, Python, Databricks &mdash; 33% less manual effort</li>
+            </ul>
+        </div>
+
+        <div class="timeline-entry experience right">
+            <div class="date">Oct 2023 &ndash; Mar 2024</div>
+            <h3>Python Developer</h3>
+            <div class="org">UnitedHealth Group Inc.</div>
+            <ul>
+                <li>Migrated 5 Tableau dashboards to Power BI, achieving 30% faster refresh</li>
+                <li>Redesigned nationwide membership dashboards</li>
+            </ul>
+        </div>
+
+        <div class="timeline-entry experience left">
+            <div class="date">Jun &ndash; Oct 2023</div>
+            <h3>Data Analyst</h3>
+            <div class="org">Metadoc.ai</div>
+            <div class="location">Los Angeles, CA (Remote)</div>
+            <ul>
+                <li>Prepared unstructured datasets in Python for predictive models</li>
+                <li>Authored standardized ETL documentation for a team of six</li>
+                <li>Performed SWOT and market sizing analyses</li>
+            </ul>
+        </div>
+
+        <!-- PROJECTS -->
+        <div class="timeline-label label-projects"><span>Projects</span></div>
+
+        <div class="timeline-entry project right">
+            <div class="date">Mar &ndash; Jun 2025</div>
+            <h3>Artist and Song Ranker</h3>
+            <p>Built with FastAPI and the last.fm API. Features a custom ranking algorithm with JSON persistence for storing user data.</p>
+        </div>
+
+        <div class="timeline-entry project left">
+            <div class="date">Dec 2021 &ndash; Jan 2023</div>
+            <h3>Research Assistant</h3>
+            <div class="org">University of Oregon</div>
+            <p>Co-authored a peer-reviewed psychology paper. Conducted statistical analysis using R.</p>
+        </div>
+
+    </section>
+
+    <footer class="footer">
+        &copy; 2026 Cameron Lee
+    </footer>
+
+</body>
+</html>

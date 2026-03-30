@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cameron Lee - Windows 98 Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'MS Sans Serif', Tahoma, Arial, sans-serif;
+            font-size: 11px;
+            background-color: #008080;
+            color: #000;
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding-bottom: 36px;
+        }
+
+        /* Desktop area */
+        .desktop {
+            background-color: #008080;
+            min-height: calc(100vh - 36px);
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            align-content: flex-start;
+            gap: 16px;
+        }
+
+        /* Desktop Icons */
+        .desktop-icons {
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            z-index: 1;
+        }
+
+        .desktop-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            width: 70px;
+            text-decoration: none;
+            color: #fff;
+            text-shadow: 1px 1px 1px #000;
+        }
+
+        .desktop-icon:hover .icon-label {
+            background-color: #000080;
+            color: #fff;
+        }
+
+        .icon-graphic {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .icon-label {
+            font-size: 11px;
+            text-align: center;
+            padding: 1px 3px;
+        }
+
+        /* Window container layout */
+        .windows-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            padding-left: 90px;
+            padding-top: 0;
+            width: 100%;
+            align-items: flex-start;
+        }
+
+        /* Window styling */
+        .window {
+            background-color: #c0c0c0;
+            border: 2px solid;
+            border-color: #ffffff #808080 #808080 #ffffff;
+            box-shadow: inset 1px 1px 0 #dfdfdf, inset -1px -1px 0 #0a0a0a;
+            min-width: 320px;
+            max-width: 620px;
+            flex: 1 1 420px;
+        }
+
+        .window-full {
+            flex-basis: 100%;
+            max-width: 100%;
+        }
+
+        /* Title bar */
+        .title-bar {
+            background: linear-gradient(90deg, #000080, #1084d0);
+            padding: 3px 4px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 22px;
+        }
+
+        .title-bar-text {
+            color: #fff;
+            font-weight: bold;
+            font-size: 12px;
+            letter-spacing: 0.3px;
+            padding-left: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .title-bar-controls {
+            display: flex;
+            gap: 2px;
+        }
+
+        .title-bar-controls span {
+            width: 16px;
+            height: 14px;
+            background-color: #c0c0c0;
+            border: 1px solid;
+            border-color: #ffffff #808080 #808080 #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            font-weight: bold;
+            line-height: 1;
+            cursor: default;
+        }
+
+        .title-bar-controls span:active {
+            border-color: #808080 #ffffff #ffffff #808080;
+        }
+
+        /* Menu bar */
+        .menu-bar {
+            background-color: #c0c0c0;
+            border-bottom: 1px solid #808080;
+            padding: 2px 0;
+            display: flex;
+            gap: 0;
+        }
+
+        .menu-bar span {
+            padding: 2px 8px;
+            cursor: default;
+        }
+
+        .menu-bar span:hover {
+            background-color: #000080;
+            color: #fff;
+        }
+
+        /* Window content */
+        .window-content {
+            background-color: #fff;
+            border: 2px solid;
+            border-color: #808080 #ffffff #ffffff #808080;
+            margin: 4px;
+            padding: 12px;
+            font-size: 11px;
+            line-height: 1.6;
+            overflow-y: auto;
+        }
+
+        .window-content.gray-bg {
+            background-color: #c0c0c0;
+            border: none;
+        }
+
+        /* Status bar */
+        .status-bar {
+            background-color: #c0c0c0;
+            border-top: 1px solid #808080;
+            padding: 2px 6px;
+            font-size: 11px;
+            display: flex;
+            gap: 4px;
+        }
+
+        .status-bar-field {
+            border: 1px solid;
+            border-color: #808080 #ffffff #ffffff #808080;
+            padding: 1px 6px;
+            flex: 1;
+        }
+
+        /* Typography */
+        h2 {
+            font-size: 12px;
+            font-weight: bold;
+            margin: 0 0 8px 0;
+            border-bottom: 1px solid #808080;
+            padding-bottom: 4px;
+            color: #000080;
+        }
+
+        h3 {
+            font-size: 11px;
+            font-weight: bold;
+            margin: 8px 0 2px 0;
+        }
+
+        p {
+            margin: 4px 0;
+        }
+
+        ul {
+            margin: 2px 0 8px 18px;
+            padding: 0;
+        }
+
+        li {
+            margin: 2px 0;
+        }
+
+        a {
+            color: #000080;
+            text-decoration: underline;
+        }
+
+        a:visited {
+            color: #800080;
+        }
+
+        a:hover {
+            color: #1084d0;
+        }
+
+        /* Buttons */
+        .btn {
+            background-color: #c0c0c0;
+            border: 2px solid;
+            border-color: #ffffff #808080 #808080 #ffffff;
+            padding: 3px 12px;
+            font-family: 'MS Sans Serif', Tahoma, Arial, sans-serif;
+            font-size: 11px;
+            cursor: default;
+            display: inline-block;
+            text-decoration: none;
+            color: #000;
+            min-width: 75px;
+            text-align: center;
+        }
+
+        .btn:active {
+            border-color: #808080 #ffffff #ffffff #808080;
+        }
+
+        /* Separator / HR */
+        hr {
+            border: none;
+            border-top: 1px solid #808080;
+            border-bottom: 1px solid #fff;
+            margin: 8px 0;
+        }
+
+        /* Table for structured info */
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11px;
+        }
+
+        .info-table td {
+            padding: 2px 8px 2px 0;
+            vertical-align: top;
+        }
+
+        .info-table td:first-child {
+            font-weight: bold;
+            white-space: nowrap;
+            width: 100px;
+        }
+
+        /* Skills tags */
+        .skill-tag {
+            display: inline-block;
+            background-color: #c0c0c0;
+            border: 1px solid;
+            border-color: #ffffff #808080 #808080 #ffffff;
+            padding: 2px 8px;
+            margin: 2px;
+            font-size: 11px;
+        }
+
+        /* Indent for bullet content */
+        .job-entry {
+            margin-bottom: 12px;
+        }
+
+        .job-header {
+            font-weight: bold;
+        }
+
+        .job-meta {
+            color: #808080;
+            font-style: italic;
+        }
+
+        /* Divider line */
+        .section-divider {
+            border: none;
+            height: 2px;
+            border-top: 1px solid #808080;
+            border-bottom: 1px solid #ffffff;
+            margin: 10px 0;
+        }
+
+        /* Scrollbar styling (Webkit) */
+        .window-content::-webkit-scrollbar {
+            width: 16px;
+        }
+
+        .window-content::-webkit-scrollbar-track {
+            background: #c0c0c0;
+            border: 1px solid #808080;
+        }
+
+        .window-content::-webkit-scrollbar-thumb {
+            background: #c0c0c0;
+            border: 2px solid;
+            border-color: #ffffff #808080 #808080 #ffffff;
+        }
+
+        .window-content::-webkit-scrollbar-button {
+            background: #c0c0c0;
+            border: 1px solid;
+            border-color: #ffffff #808080 #808080 #ffffff;
+            height: 16px;
+        }
+
+        /* Taskbar */
+        .taskbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 36px;
+            background-color: #c0c0c0;
+            border-top: 2px solid #ffffff;
+            display: flex;
+            align-items: center;
+            padding: 2px 4px;
+            z-index: 9999;
+        }
+
+        .start-button {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            background-color: #c0c0c0;
+            border: 2px solid;
+            border-color: #ffffff #808080 #808080 #ffffff;
+            padding: 3px 8px;
+            font-family: 'MS Sans Serif', Tahoma, Arial, sans-serif;
+            font-size: 11px;
+            font-weight: bold;
+            cursor: default;
+            height: 28px;
+            text-decoration: none;
+            color: #000;
+        }
+
+        .start-button:active {
+            border-color: #808080 #ffffff #ffffff #808080;
+        }
+
+        .start-logo {
+            width: 16px;
+            height: 16px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 1px;
+        }
+
+        .start-logo span:nth-child(1) { background: #ff0000; }
+        .start-logo span:nth-child(2) { background: #00ff00; }
+        .start-logo span:nth-child(3) { background: #0000ff; }
+        .start-logo span:nth-child(4) { background: #ffff00; }
+
+        .taskbar-tray {
+            margin-left: auto;
+            border: 1px solid;
+            border-color: #808080 #ffffff #ffffff #808080;
+            padding: 2px 12px;
+            font-size: 11px;
+            height: 26px;
+            display: flex;
+            align-items: center;
+        }
+
+        .taskbar-buttons {
+            display: flex;
+            gap: 3px;
+            margin-left: 6px;
+            flex: 1;
+        }
+
+        .taskbar-btn {
+            background-color: #c0c0c0;
+            border: 2px solid;
+            border-color: #808080 #ffffff #ffffff #808080;
+            padding: 2px 8px;
+            font-family: 'MS Sans Serif', Tahoma, Arial, sans-serif;
+            font-size: 11px;
+            cursor: default;
+            height: 26px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 160px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .desktop-icons {
+                position: static;
+                flex-direction: row;
+                flex-wrap: wrap;
+                padding: 8px;
+            }
+            .windows-container {
+                padding-left: 0;
+            }
+            .window {
+                min-width: 280px;
+                flex-basis: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Desktop Icons -->
+    <div class="desktop-icons">
+        <a href="../index.html" class="desktop-icon">
+            <div class="icon-graphic">
+                <svg width="32" height="32" viewBox="0 0 32 32">
+                    <rect x="4" y="8" width="24" height="18" fill="#808080" stroke="#000" stroke-width="1"/>
+                    <rect x="5" y="9" width="22" height="16" fill="#c0c0c0"/>
+                    <rect x="6" y="10" width="20" height="12" fill="#fff"/>
+                    <polygon points="16,12 10,18 22,18" fill="#000080"/>
+                    <rect x="11" y="24" width="10" height="2" fill="#808080" stroke="#000" stroke-width="0.5"/>
+                    <rect x="8" y="25" width="16" height="2" fill="#808080" stroke="#000" stroke-width="0.5"/>
+                </svg>
+            </div>
+            <span class="icon-label">Back to<br>Portfolio</span>
+        </a>
+        <a href="mailto:cameronmlee.home@gmail.com" class="desktop-icon">
+            <div class="icon-graphic">
+                <svg width="32" height="32" viewBox="0 0 32 32">
+                    <rect x="3" y="8" width="26" height="18" fill="#ffff80" stroke="#000" stroke-width="1"/>
+                    <polyline points="3,8 16,18 29,8" fill="none" stroke="#000" stroke-width="1"/>
+                </svg>
+            </div>
+            <span class="icon-label">Email</span>
+        </a>
+    </div>
+
+    <div class="desktop">
+        <div class="windows-container">
+
+            <!-- About Window -->
+            <div class="window">
+                <div class="title-bar">
+                    <span class="title-bar-text">About Cameron Lee</span>
+                    <div class="title-bar-controls">
+                        <span>_</span>
+                        <span>&#9633;</span>
+                        <span>&times;</span>
+                    </div>
+                </div>
+                <div class="menu-bar">
+                    <span>File</span>
+                    <span>Edit</span>
+                    <span>View</span>
+                    <span>Help</span>
+                </div>
+                <div class="window-content">
+                    <h2>Welcome to My Portfolio</h2>
+                    <p>Hello! I am <strong>Cameron Lee</strong>, a computer science graduate student at the University of Chicago with a background in data analytics, Python development, and business intelligence.</p>
+                    <hr>
+                    <table class="info-table">
+                        <tr>
+                            <td>Email:</td>
+                            <td><a href="mailto:cameronmlee.home@gmail.com">cameronmlee.home@gmail.com</a></td>
+                        </tr>
+                        <tr>
+                            <td>LinkedIn:</td>
+                            <td><a href="https://linkedin.com/in/cameronmlee/" target="_blank">linkedin.com/in/cameronmlee/</a></td>
+                        </tr>
+                        <tr>
+                            <td>GitHub:</td>
+                            <td><a href="https://github.com/cmlee2" target="_blank">github.com/cmlee2</a></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="status-bar">
+                    <div class="status-bar-field">Ready</div>
+                </div>
+            </div>
+
+            <!-- Education Window -->
+            <div class="window">
+                <div class="title-bar">
+                    <span class="title-bar-text">C:\Education</span>
+                    <div class="title-bar-controls">
+                        <span>_</span>
+                        <span>&#9633;</span>
+                        <span>&times;</span>
+                    </div>
+                </div>
+                <div class="menu-bar">
+                    <span>File</span>
+                    <span>Edit</span>
+                    <span>View</span>
+                    <span>Help</span>
+                </div>
+                <div class="window-content">
+                    <h2>Education</h2>
+                    <div class="job-entry">
+                        <div class="job-header">University of Chicago</div>
+                        <div>MS Computer Science</div>
+                        <div class="job-meta">Expected June 2026</div>
+                    </div>
+                    <div class="section-divider"></div>
+                    <div class="job-entry">
+                        <div class="job-header">University of California, Los Angeles (UCLA)</div>
+                        <div>BA Business Economics &amp; BA Psychology</div>
+                        <div class="job-meta">June 2021</div>
+                    </div>
+                </div>
+                <div class="status-bar">
+                    <div class="status-bar-field">2 items</div>
+                </div>
+            </div>
+
+            <!-- Experience Window -->
+            <div class="window window-full">
+                <div class="title-bar">
+                    <span class="title-bar-text">C:\Experience\work_history.exe</span>
+                    <div class="title-bar-controls">
+                        <span>_</span>
+                        <span>&#9633;</span>
+                        <span>&times;</span>
+                    </div>
+                </div>
+                <div class="menu-bar">
+                    <span>File</span>
+                    <span>Edit</span>
+                    <span>View</span>
+                    <span>Help</span>
+                </div>
+                <div class="window-content">
+                    <h2>Professional Experience</h2>
+
+                    <div class="job-entry">
+                        <div class="job-header">Data Analyst &mdash; UnitedHealth Group Inc.</div>
+                        <div class="job-meta">Aug 2024 &ndash; Feb 2026</div>
+                        <ul>
+                            <li>Build and maintain PowerBI dashboards tracking KPIs across 100M+ records</li>
+                            <li>Develop data pipelines in Azure Data Factory and Snowflake</li>
+                            <li>Achieved 66% reduction in weekly refresh time (48 hrs down to 16 hrs)</li>
+                            <li>Automate deliverables with ADF, Python, and Databricks &mdash; 33% less manual effort</li>
+                        </ul>
+                    </div>
+
+                    <div class="section-divider"></div>
+
+                    <div class="job-entry">
+                        <div class="job-header">Python Developer &mdash; UnitedHealth Group Inc.</div>
+                        <div class="job-meta">Oct 2023 &ndash; Mar 2024</div>
+                        <ul>
+                            <li>Migrated 5 Tableau dashboards to Power BI, achieving 30% faster refresh</li>
+                            <li>Redesigned nationwide membership dashboards</li>
+                        </ul>
+                    </div>
+
+                    <div class="section-divider"></div>
+
+                    <div class="job-entry">
+                        <div class="job-header">Data Analyst &mdash; Metadoc.ai</div>
+                        <div class="job-meta">Jun &ndash; Oct 2023</div>
+                        <ul>
+                            <li>Prepared unstructured datasets in Python for predictive models</li>
+                            <li>Authored standardized ETL documentation for team of six</li>
+                            <li>Performed SWOT and market sizing analyses</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="status-bar">
+                    <div class="status-bar-field">3 positions loaded</div>
+                </div>
+            </div>
+
+            <!-- Projects Window -->
+            <div class="window">
+                <div class="title-bar">
+                    <span class="title-bar-text">C:\Projects</span>
+                    <div class="title-bar-controls">
+                        <span>_</span>
+                        <span>&#9633;</span>
+                        <span>&times;</span>
+                    </div>
+                </div>
+                <div class="menu-bar">
+                    <span>File</span>
+                    <span>Edit</span>
+                    <span>View</span>
+                    <span>Help</span>
+                </div>
+                <div class="window-content">
+                    <h2>Projects</h2>
+
+                    <div class="job-entry">
+                        <div class="job-header">Artist and Song Ranker</div>
+                        <div class="job-meta">Mar &ndash; Jun 2025</div>
+                        <ul>
+                            <li>Built with FastAPI and last.fm API integration</li>
+                            <li>Custom ranking algorithm with JSON persistence</li>
+                        </ul>
+                    </div>
+
+                    <div class="section-divider"></div>
+
+                    <div class="job-entry">
+                        <div class="job-header">Research Assistant &mdash; University of Oregon</div>
+                        <div class="job-meta">Dec 2021 &ndash; Jan 2023</div>
+                        <ul>
+                            <li>Co-authored peer-reviewed psychology paper</li>
+                            <li>Statistical analysis using R</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="status-bar">
+                    <div class="status-bar-field">2 items</div>
+                </div>
+            </div>
+
+            <!-- Skills Window -->
+            <div class="window">
+                <div class="title-bar">
+                    <span class="title-bar-text">C:\System\Skills.dll</span>
+                    <div class="title-bar-controls">
+                        <span>_</span>
+                        <span>&#9633;</span>
+                        <span>&times;</span>
+                    </div>
+                </div>
+                <div class="menu-bar">
+                    <span>File</span>
+                    <span>Edit</span>
+                    <span>View</span>
+                    <span>Help</span>
+                </div>
+                <div class="window-content">
+                    <h2>Installed Programs &amp; Skills</h2>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">SQL</span>
+                    <span class="skill-tag">HTML</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">Pandas</span>
+                    <span class="skill-tag">NumPy</span>
+                    <span class="skill-tag">Sci-Kit Learn</span>
+                    <span class="skill-tag">FastAPI</span>
+                    <span class="skill-tag">Snowflake</span>
+                    <span class="skill-tag">Azure Data Factory</span>
+                    <span class="skill-tag">Databricks</span>
+                    <span class="skill-tag">SQL Server</span>
+                    <span class="skill-tag">Power BI</span>
+                </div>
+                <div class="status-bar">
+                    <div class="status-bar-field">13 skills installed</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Taskbar -->
+    <div class="taskbar">
+        <a href="../index.html" class="start-button">
+            <div class="start-logo">
+                <span></span><span></span><span></span><span></span>
+            </div>
+            Start
+        </a>
+        <div class="taskbar-buttons">
+            <div class="taskbar-btn">About Cameron Lee</div>
+            <div class="taskbar-btn">C:\Experience</div>
+            <div class="taskbar-btn">C:\Projects</div>
+        </div>
+        <div class="taskbar-tray">12:00 AM</div>
+    </div>
+
+</body>
+</html>

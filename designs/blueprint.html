@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cameron Lee — Blueprint Portfolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=IBM+Plex+Mono:wght@400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'IBM Plex Mono', 'Courier New', monospace;
+            background-color: #1a3a5c;
+            color: #d0e4f5;
+            line-height: 1.6;
+            min-height: 100vh;
+            background-image:
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 39px,
+                    rgba(255, 255, 255, 0.06) 39px,
+                    rgba(255, 255, 255, 0.06) 40px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 39px,
+                    rgba(255, 255, 255, 0.06) 39px,
+                    rgba(255, 255, 255, 0.06) 40px
+                );
+            background-size: 40px 40px;
+        }
+
+        /* Coordinate markers along the edges */
+        body::before {
+            content: "ORIGIN (0,0)";
+            position: fixed;
+            top: 8px;
+            left: 12px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.2);
+            letter-spacing: 2px;
+        }
+
+        body::after {
+            content: "BLUEPRINT REV 1.0 — PORTFOLIO SCHEMATIC";
+            position: fixed;
+            bottom: 8px;
+            right: 12px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.2);
+            letter-spacing: 2px;
+        }
+
+        .wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 24px 80px;
+        }
+
+        /* Back link */
+        .back-link {
+            display: inline-block;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 13px;
+            color: #7ab8e0;
+            text-decoration: none;
+            border: 1px dashed #7ab8e0;
+            padding: 6px 14px;
+            letter-spacing: 1px;
+            margin-bottom: 32px;
+            position: relative;
+        }
+
+        .back-link::before {
+            content: "← ";
+        }
+
+        .back-link:hover {
+            background-color: rgba(122, 184, 224, 0.1);
+            color: #ffffff;
+            border-color: #ffffff;
+        }
+
+        /* Section coordinate label */
+        .coord {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.3);
+            letter-spacing: 2px;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        /* Header */
+        .header {
+            border: 2px dashed rgba(255, 255, 255, 0.25);
+            padding: 32px;
+            margin-bottom: 36px;
+            position: relative;
+        }
+
+        .header::before {
+            content: "";
+            position: absolute;
+            top: -6px;
+            left: -6px;
+            right: -6px;
+            bottom: -6px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            pointer-events: none;
+        }
+
+        .header h1 {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 36px;
+            color: #ffffff;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .header .subtitle {
+            font-size: 14px;
+            color: #7ab8e0;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .header .title-line {
+            width: 100%;
+            height: 1px;
+            background: repeating-linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0.3) 0px,
+                rgba(255, 255, 255, 0.3) 8px,
+                transparent 8px,
+                transparent 14px
+            );
+            margin: 16px 0;
+        }
+
+        /* Contact row */
+        .contact-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            font-size: 13px;
+        }
+
+        .contact-row a {
+            color: #7ab8e0;
+            text-decoration: none;
+            border-bottom: 1px dashed rgba(122, 184, 224, 0.4);
+            padding-bottom: 1px;
+        }
+
+        .contact-row a:hover {
+            color: #ffffff;
+            border-bottom-color: #ffffff;
+        }
+
+        .contact-item::before {
+            content: "⊡ ";
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 36px;
+            padding: 24px;
+            border-left: 2px dashed rgba(255, 255, 255, 0.2);
+            position: relative;
+        }
+
+        .section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -7px;
+            width: 12px;
+            height: 12px;
+            border: 2px solid #7ab8e0;
+            background: #1a3a5c;
+            border-radius: 50%;
+        }
+
+        .section-title {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 18px;
+            color: #ffffff;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .section-title::before {
+            content: "// ";
+            color: rgba(255, 255, 255, 0.25);
+        }
+
+        /* Dimension line under section titles */
+        .dim-line {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        .dim-line span {
+            flex: 1;
+            height: 1px;
+            background: repeating-linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0.15) 0px,
+                rgba(255, 255, 255, 0.15) 4px,
+                transparent 4px,
+                transparent 8px
+            );
+        }
+
+        /* Entry blocks (education, experience) */
+        .entry {
+            margin-bottom: 22px;
+            padding: 16px;
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .entry::after {
+            content: "+";
+            position: absolute;
+            top: -1px;
+            right: -1px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.15);
+            background: #1a3a5c;
+            padding: 0 3px;
+        }
+
+        .entry-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 4px;
+        }
+
+        .entry-org {
+            font-size: 15px;
+            color: #ffffff;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .entry-date {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 12px;
+            color: #7ab8e0;
+            letter-spacing: 1px;
+        }
+
+        .entry-role {
+            font-size: 13px;
+            color: #94c8e8;
+            margin-bottom: 2px;
+        }
+
+        .entry-location {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.35);
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .entry-details {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .entry-details li {
+            font-size: 13px;
+            color: #b8d4ea;
+            margin-bottom: 6px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .entry-details li::before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: rgba(255, 255, 255, 0.25);
+        }
+
+        .entry-coursework {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.45);
+            margin-top: 4px;
+        }
+
+        .entry-coursework::before {
+            content: "NOTE: ";
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 10px;
+            color: #7ab8e0;
+            letter-spacing: 1px;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 12px;
+            color: #7ab8e0;
+            border: 1px dashed rgba(122, 184, 224, 0.4);
+            padding: 5px 12px;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        .skill-tag::before {
+            content: "";
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            width: 5px;
+            height: 5px;
+            border-top: 1px solid rgba(122, 184, 224, 0.5);
+            border-left: 1px solid rgba(122, 184, 224, 0.5);
+        }
+
+        .skill-tag::after {
+            content: "";
+            position: absolute;
+            bottom: -3px;
+            right: -3px;
+            width: 5px;
+            height: 5px;
+            border-bottom: 1px solid rgba(122, 184, 224, 0.5);
+            border-right: 1px solid rgba(122, 184, 224, 0.5);
+        }
+
+        /* Footer annotation */
+        .footer-annotation {
+            margin-top: 48px;
+            padding-top: 20px;
+            border-top: 1px dashed rgba(255, 255, 255, 0.1);
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.2);
+            letter-spacing: 2px;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .header h1 {
+                font-size: 24px;
+                letter-spacing: 3px;
+            }
+
+            .contact-row {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .entry-header {
+                flex-direction: column;
+            }
+
+            .wrapper {
+                padding: 24px 14px 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+
+        <a href="../index.html" class="back-link">RETURN TO INDEX</a>
+
+        <!-- HEADER -->
+        <header class="header">
+            <span class="coord">[SEC 0,0] IDENTIFICATION</span>
+            <h1>Cameron Lee</h1>
+            <p class="subtitle">Data Analyst &amp; Software Developer</p>
+            <div class="title-line"></div>
+            <div class="contact-row">
+                <span class="contact-item"><a href="mailto:cameronmlee.home@gmail.com">cameronmlee.home@gmail.com</a></span>
+                <span class="contact-item"><a href="https://linkedin.com/in/cameronmlee/">linkedin.com/in/cameronmlee</a></span>
+                <span class="contact-item"><a href="https://github.com/cmlee2">github.com/cmlee2</a></span>
+            </div>
+        </header>
+
+        <!-- EDUCATION -->
+        <section class="section">
+            <span class="coord">[SEC 1,0] ACADEMIC RECORD</span>
+            <h2 class="section-title">Education</h2>
+            <div class="dim-line"><span></span></div>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <span class="entry-org">University of Chicago</span>
+                    <span class="entry-date">Expected Jun 2026</span>
+                </div>
+                <p class="entry-role">MS Computer Science</p>
+                <p class="entry-coursework">Coursework: Databases, ML, Applied Financial Technology</p>
+            </div>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <span class="entry-org">University of California, Los Angeles</span>
+                    <span class="entry-date">Jun 2021</span>
+                </div>
+                <p class="entry-role">BA Business Economics + BA Psychology</p>
+            </div>
+        </section>
+
+        <!-- EXPERIENCE -->
+        <section class="section">
+            <span class="coord">[SEC 2,0] PROFESSIONAL HISTORY</span>
+            <h2 class="section-title">Experience</h2>
+            <div class="dim-line"><span></span></div>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <span class="entry-org">UnitedHealth Group Inc.</span>
+                    <span class="entry-date">Aug 2024 – Feb 2026</span>
+                </div>
+                <p class="entry-role">Data Analyst</p>
+                <p class="entry-location">Chicago, IL (Remote)</p>
+                <ul class="entry-details">
+                    <li>Build and maintain PowerBI dashboards tracking KPIs across 100M+ records</li>
+                    <li>Develop data pipelines in Azure Data Factory and Snowflake</li>
+                    <li>66% reduction in weekly refresh time (48 hrs to 16 hrs)</li>
+                    <li>Automate deliverables with ADF, Python, Databricks — 33% less manual effort</li>
+                </ul>
+            </div>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <span class="entry-org">UnitedHealth Group Inc.</span>
+                    <span class="entry-date">Oct 2023 – Mar 2024</span>
+                </div>
+                <p class="entry-role">Python Developer</p>
+                <ul class="entry-details">
+                    <li>Migrated 5 Tableau dashboards to Power BI, 30% faster refresh</li>
+                    <li>Redesigned nationwide membership dashboards</li>
+                </ul>
+            </div>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <span class="entry-org">Metadoc.ai</span>
+                    <span class="entry-date">Jun – Oct 2023</span>
+                </div>
+                <p class="entry-role">Data Analyst</p>
+                <p class="entry-location">Los Angeles, CA (Remote)</p>
+                <ul class="entry-details">
+                    <li>Prepared unstructured datasets in Python for predictive models</li>
+                    <li>Authored standardized ETL docs for team of six</li>
+                    <li>Performed SWOT and market sizing analyses</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- PROJECTS -->
+        <section class="section">
+            <span class="coord">[SEC 3,0] PROJECT SCHEMATICS</span>
+            <h2 class="section-title">Projects</h2>
+            <div class="dim-line"><span></span></div>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <span class="entry-org">Artist and Song Ranker</span>
+                    <span class="entry-date">Mar – Jun 2025</span>
+                </div>
+                <ul class="entry-details">
+                    <li>FastAPI + last.fm API integration with ranking algorithm</li>
+                    <li>JSON persistence layer for data storage</li>
+                </ul>
+            </div>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <span class="entry-org">Research Assistant — University of Oregon</span>
+                    <span class="entry-date">Dec 2021 – Jan 2023</span>
+                </div>
+                <ul class="entry-details">
+                    <li>Co-authored peer-reviewed psychology paper</li>
+                    <li>Statistical analysis using R</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- SKILLS -->
+        <section class="section">
+            <span class="coord">[SEC 4,0] TECHNICAL SPECIFICATIONS</span>
+            <h2 class="section-title">Skills</h2>
+            <div class="dim-line"><span></span></div>
+
+            <div class="skills-grid">
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">SQL</span>
+                <span class="skill-tag">HTML</span>
+                <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">Pandas</span>
+                <span class="skill-tag">NumPy</span>
+                <span class="skill-tag">Sci-Kit Learn</span>
+                <span class="skill-tag">FastAPI</span>
+                <span class="skill-tag">Snowflake</span>
+                <span class="skill-tag">Azure Data Factory</span>
+                <span class="skill-tag">Databricks</span>
+                <span class="skill-tag">SQL Server</span>
+                <span class="skill-tag">Power BI</span>
+            </div>
+        </section>
+
+        <div class="footer-annotation">
+            DRAWING NO. CL-2026-001 &nbsp;|&nbsp; SCALE: 1:1 &nbsp;|&nbsp; SHEET 1 OF 1
+        </div>
+
+    </div>
+</body>
+</html>

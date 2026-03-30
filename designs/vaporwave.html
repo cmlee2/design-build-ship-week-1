@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cameron Lee // VAPORWAVE PORTFOLIO</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(180deg, #1a0030 0%, #2d1b69 40%, #1a0030 100%);
+            color: #e0d0ff;
+            font-family: 'Space Mono', monospace;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Perspective grid floor */
+        .grid-floor {
+            position: fixed;
+            bottom: 0;
+            left: -50%;
+            width: 200%;
+            height: 55%;
+            background:
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 58px,
+                    rgba(255, 113, 206, 0.25) 58px,
+                    rgba(255, 113, 206, 0.25) 60px
+                ),
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 58px,
+                    rgba(1, 205, 254, 0.25) 58px,
+                    rgba(1, 205, 254, 0.25) 60px
+                );
+            transform: perspective(400px) rotateX(55deg);
+            transform-origin: center top;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .grid-floor::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                180deg,
+                rgba(26, 0, 48, 0.95) 0%,
+                rgba(26, 0, 48, 0.3) 30%,
+                transparent 60%
+            );
+        }
+
+        /* Sun/horizon glow */
+        .sun {
+            position: fixed;
+            bottom: 28%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(
+                180deg,
+                #ff71ce 0%,
+                #b967ff 40%,
+                #01cdfe 100%
+            );
+            filter: blur(2px);
+            z-index: 0;
+            opacity: 0.7;
+        }
+
+        .sun::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            box-shadow: 0 0 80px 30px rgba(255, 113, 206, 0.4),
+                        0 0 160px 60px rgba(185, 103, 255, 0.2);
+        }
+
+        /* Horizontal scan lines through the sun */
+        .sun::after {
+            content: '';
+            position: absolute;
+            top: 40%;
+            left: 0;
+            width: 100%;
+            height: 60%;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 6px,
+                #1a0030 6px,
+                #1a0030 10px
+            );
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 30px 100px;
+        }
+
+        /* Back link */
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: #01cdfe;
+            text-decoration: none;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border: 1px solid #01cdfe;
+            padding: 8px 16px;
+            transition: all 0.3s;
+        }
+
+        .back-link:hover {
+            background: #01cdfe;
+            color: #1a0030;
+            box-shadow: 0 0 20px rgba(1, 205, 254, 0.5);
+        }
+
+        /* Glitch text effect */
+        .glitch {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            color: #fff;
+            text-shadow:
+                3px 3px 0 #ff71ce,
+                -3px -3px 0 #01cdfe,
+                1px -1px 0 #05ffa1;
+            letter-spacing: 4px;
+            line-height: 1.1;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .glitch::before {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 2px;
+            width: 100%;
+            color: #fff;
+            text-shadow: -3px 0 #ff71ce;
+            clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+            animation: glitch-top 3s infinite linear alternate-reverse;
+        }
+
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: -2px;
+            width: 100%;
+            color: #fff;
+            text-shadow: 3px 0 #01cdfe;
+            clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+            animation: glitch-bottom 4s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-top {
+            0%, 90% { transform: translate(0); }
+            92% { transform: translate(-4px, -2px); }
+            94% { transform: translate(4px, 0); }
+            96% { transform: translate(-2px, 2px); }
+            98% { transform: translate(2px, -1px); }
+            100% { transform: translate(0); }
+        }
+
+        @keyframes glitch-bottom {
+            0%, 88% { transform: translate(0); }
+            90% { transform: translate(3px, 1px); }
+            93% { transform: translate(-3px, 0); }
+            96% { transform: translate(1px, -2px); }
+            100% { transform: translate(0); }
+        }
+
+        .subtitle {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            color: #b967ff;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            text-shadow: 0 0 10px rgba(185, 103, 255, 0.6);
+        }
+
+        /* Contact bar */
+        .contact-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 50px;
+            padding: 20px;
+            border: 1px solid rgba(255, 113, 206, 0.3);
+            background: rgba(26, 0, 48, 0.7);
+        }
+
+        .contact-bar a {
+            color: #05ffa1;
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            text-shadow: 0 0 8px rgba(5, 255, 161, 0.4);
+        }
+
+        .contact-bar a:hover {
+            color: #fff;
+            text-shadow: 0 0 15px rgba(5, 255, 161, 0.8);
+        }
+
+        .contact-bar span {
+            color: rgba(255, 113, 206, 0.4);
+        }
+
+        /* Section headers */
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1.6rem;
+            color: #ff71ce;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid;
+            border-image: linear-gradient(90deg, #ff71ce, #01cdfe, #05ffa1, transparent) 1;
+            text-shadow:
+                2px 2px 0 rgba(1, 205, 254, 0.5),
+                -1px -1px 0 rgba(185, 103, 255, 0.5);
+        }
+
+        section {
+            margin-bottom: 50px;
+        }
+
+        /* Education */
+        .edu-item {
+            margin-bottom: 18px;
+            padding-left: 20px;
+            border-left: 3px solid #b967ff;
+        }
+
+        .edu-item .school {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            color: #01cdfe;
+            text-shadow: 0 0 8px rgba(1, 205, 254, 0.3);
+        }
+
+        .edu-item .degree {
+            color: #ff71ce;
+            font-size: 0.9rem;
+        }
+
+        .edu-item .details {
+            color: #b0a0d0;
+            font-size: 0.8rem;
+            margin-top: 3px;
+        }
+
+        /* Experience */
+        .exp-item {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(45, 27, 105, 0.5);
+            border: 1px solid rgba(185, 103, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .exp-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #ff71ce, #01cdfe, #05ffa1);
+        }
+
+        .exp-item .company {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            color: #01cdfe;
+            text-shadow: 0 0 8px rgba(1, 205, 254, 0.3);
+        }
+
+        .exp-item .role {
+            color: #ff71ce;
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+
+        .exp-item .meta {
+            font-size: 0.8rem;
+            color: #b967ff;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .exp-item ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .exp-item ul li {
+            padding: 4px 0 4px 20px;
+            position: relative;
+            font-size: 0.85rem;
+            color: #d0c0f0;
+            line-height: 1.5;
+        }
+
+        .exp-item ul li::before {
+            content: '>';
+            position: absolute;
+            left: 0;
+            color: #05ffa1;
+            font-weight: 700;
+        }
+
+        /* Projects */
+        .project-item {
+            margin-bottom: 20px;
+            padding: 16px 20px;
+            border: 1px solid rgba(1, 205, 254, 0.3);
+            background: rgba(26, 0, 48, 0.6);
+        }
+
+        .project-item .project-name {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            color: #05ffa1;
+            font-size: 0.95rem;
+            text-shadow: 0 0 8px rgba(5, 255, 161, 0.3);
+        }
+
+        .project-item .project-date {
+            font-size: 0.8rem;
+            color: #b967ff;
+            letter-spacing: 1px;
+        }
+
+        .project-item .project-desc {
+            font-size: 0.85rem;
+            color: #d0c0f0;
+            margin-top: 6px;
+            line-height: 1.5;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            padding: 8px 16px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            color: #1a0030;
+            font-weight: 700;
+            letter-spacing: 1px;
+            background: linear-gradient(135deg, #ff71ce, #b967ff);
+            clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+        }
+
+        .skill-tag:nth-child(3n+2) {
+            background: linear-gradient(135deg, #01cdfe, #05ffa1);
+        }
+
+        .skill-tag:nth-child(3n+3) {
+            background: linear-gradient(135deg, #b967ff, #01cdfe);
+        }
+
+        /* Scanlines overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 0, 0, 0.05) 2px,
+                rgba(0, 0, 0, 0.05) 4px
+            );
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .glitch {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 0.75rem;
+                letter-spacing: 4px;
+            }
+
+            .section-title {
+                font-size: 1.2rem;
+                letter-spacing: 3px;
+            }
+
+            .contact-bar {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .contact-bar span {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sun"></div>
+    <div class="grid-floor"></div>
+
+    <div class="content">
+
+        <a href="../index.html" class="back-link">&larr; Back</a>
+
+        <header>
+            <h1 class="glitch" data-text="Cameron Lee">Cameron Lee</h1>
+            <p class="subtitle">Data Analyst &amp; Developer</p>
+        </header>
+
+        <div class="contact-bar">
+            <a href="mailto:cameronmlee.home@gmail.com">cameronmlee.home@gmail.com</a>
+            <span>//</span>
+            <a href="https://linkedin.com/in/cameronmlee/" target="_blank">linkedin.com/in/cameronmlee</a>
+            <span>//</span>
+            <a href="https://github.com/cmlee2" target="_blank">github.com/cmlee2</a>
+        </div>
+
+        <section>
+            <h2 class="section-title">Education</h2>
+
+            <div class="edu-item">
+                <div class="school">University of Chicago</div>
+                <div class="degree">MS Computer Science &mdash; Expected June 2026</div>
+                <div class="details">Coursework: Databases, ML, Applied Financial Technology</div>
+            </div>
+
+            <div class="edu-item">
+                <div class="school">UCLA</div>
+                <div class="degree">BA Business Economics + BA Psychology &mdash; June 2021</div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Experience</h2>
+
+            <div class="exp-item">
+                <div class="company">UnitedHealth Group Inc.</div>
+                <div class="role">Data Analyst</div>
+                <div class="meta">Aug 2024 &ndash; Feb 2026 // Chicago, IL (Remote)</div>
+                <ul>
+                    <li>Build and maintain Power BI dashboards tracking KPIs across 100M+ records</li>
+                    <li>Develop data pipelines in Azure Data Factory and Snowflake</li>
+                    <li>Achieved 66% reduction in weekly refresh time (48 hrs to 16 hrs)</li>
+                    <li>Automate deliverables with ADF, Python, Databricks &mdash; 33% less manual effort</li>
+                </ul>
+            </div>
+
+            <div class="exp-item">
+                <div class="company">UnitedHealth Group Inc.</div>
+                <div class="role">Python Developer</div>
+                <div class="meta">Oct 2023 &ndash; Mar 2024</div>
+                <ul>
+                    <li>Migrated 5 Tableau dashboards to Power BI, achieving 30% faster refresh</li>
+                    <li>Redesigned nationwide membership dashboards</li>
+                </ul>
+            </div>
+
+            <div class="exp-item">
+                <div class="company">Metadoc.ai</div>
+                <div class="role">Data Analyst</div>
+                <div class="meta">Jun &ndash; Oct 2023 // Los Angeles, CA (Remote)</div>
+                <ul>
+                    <li>Prepared unstructured datasets in Python for predictive models</li>
+                    <li>Authored standardized ETL documentation for team of six</li>
+                    <li>Performed SWOT and market sizing analyses</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Projects</h2>
+
+            <div class="project-item">
+                <div class="project-name">Artist and Song Ranker</div>
+                <div class="project-date">Mar &ndash; Jun 2025</div>
+                <div class="project-desc">FastAPI + last.fm API integration with a custom ranking algorithm and JSON persistence layer.</div>
+            </div>
+
+            <div class="project-item">
+                <div class="project-name">Research Assistant &mdash; University of Oregon</div>
+                <div class="project-date">Dec 2021 &ndash; Jan 2023</div>
+                <div class="project-desc">Co-authored peer-reviewed psychology paper with statistical analysis conducted in R.</div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-grid">
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">SQL</span>
+                <span class="skill-tag">HTML</span>
+                <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">Pandas</span>
+                <span class="skill-tag">NumPy</span>
+                <span class="skill-tag">Sci-Kit Learn</span>
+                <span class="skill-tag">FastAPI</span>
+                <span class="skill-tag">Snowflake</span>
+                <span class="skill-tag">Azure Data Factory</span>
+                <span class="skill-tag">Databricks</span>
+                <span class="skill-tag">SQL Server</span>
+                <span class="skill-tag">Power BI</span>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>

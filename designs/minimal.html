@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cameron Lee | Minimal</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-weight: 300;
+            color: #333;
+            background: #fff;
+            line-height: 1.8;
+            padding: 80px 20px;
+        }
+
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .contact {
+            color: #999;
+            font-size: 0.85rem;
+            margin-bottom: 60px;
+        }
+
+        .contact a {
+            color: #999;
+            text-decoration: none;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .contact a:hover {
+            color: #333;
+            border-color: #333;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 40px;
+            color: #bbb;
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+
+        .back-link:hover { color: #333; }
+
+        section {
+            margin-bottom: 56px;
+        }
+
+        section h2 {
+            font-size: 0.75rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #bbb;
+            margin-bottom: 24px;
+        }
+
+        .entry {
+            margin-bottom: 32px;
+        }
+
+        .entry h3 {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+
+        .entry .meta {
+            font-size: 0.85rem;
+            color: #999;
+            margin-bottom: 8px;
+        }
+
+        .entry p, .entry li {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .entry ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .entry ul li {
+            padding-left: 16px;
+            position: relative;
+            margin-bottom: 4px;
+        }
+
+        .entry ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 11px;
+            width: 6px;
+            height: 1px;
+            background: #ccc;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 20px;
+            list-style: none;
+            padding: 0;
+        }
+
+        .skills-list li {
+            font-size: 0.85rem;
+            color: #777;
+        }
+
+        footer {
+            margin-top: 80px;
+            color: #ddd;
+            font-size: 0.75rem;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 40px 20px; }
+            h1 { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <a href="../index.html" class="back-link">&larr; Back to designs</a>
+
+    <h1>Cameron Lee</h1>
+    <p class="contact">
+        <a href="mailto:cameronmlee.home@gmail.com">cameronmlee.home@gmail.com</a> &nbsp;&middot;&nbsp;
+        <a href="https://linkedin.com/in/cameronmlee/">LinkedIn</a> &nbsp;&middot;&nbsp;
+        <a href="https://github.com/cmlee2">GitHub</a>
+    </p>
+
+    <section>
+        <h2>Education</h2>
+
+        <div class="entry">
+            <h3>The University of Chicago</h3>
+            <p class="meta">MS in Computer Science &middot; Expected June 2026</p>
+            <p>Databases, Machine Learning, Applied Financial Technology</p>
+        </div>
+
+        <div class="entry">
+            <h3>University of California, Los Angeles</h3>
+            <p class="meta">BA in Business Economics, BA in Psychology &middot; June 2021</p>
+            <p>Behavioral Economics, Econometrics, Pricing and Strategy</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Experience</h2>
+
+        <div class="entry">
+            <h3>UnitedHealth Group Inc.</h3>
+            <p class="meta">Data Analyst &middot; August 2024 &ndash; February 2026 &middot; Chicago, IL</p>
+            <ul>
+                <li>Build and maintain PowerBI dashboards for stakeholders tracking KPIs across 100M+ records</li>
+                <li>Develop data pipelines in Azure Data Factory and Snowflake for a previously unsupported business sector</li>
+                <li>Collaborated with data engineering to achieve 66% reduction in weekly refresh time</li>
+                <li>Automate weekly deliverables using ADF, Python, and Databricks, cutting manual effort by 33%</li>
+            </ul>
+        </div>
+
+        <div class="entry">
+            <p class="meta">Python Developer &middot; October 2023 &ndash; March 2024</p>
+            <ul>
+                <li>Migrated 5 Tableau dashboards to Power BI, reducing refresh times by 30%</li>
+                <li>Redesigned dashboards tracking nationwide membership for improved stakeholder legibility</li>
+            </ul>
+        </div>
+
+        <div class="entry">
+            <h3>Metadoc.ai</h3>
+            <p class="meta">Data Analyst &middot; June 2023 &ndash; October 2023 &middot; Los Angeles, CA</p>
+            <ul>
+                <li>Prepared and validated unstructured datasets in Python for predictive model development</li>
+                <li>Authored standardized ETL documentation for team of six</li>
+                <li>Performed strategic analyses (SWOT, market sizing) to guide business growth initiatives</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h2>Projects &amp; Research</h2>
+
+        <div class="entry">
+            <h3>Artist and Song Ranker</h3>
+            <p class="meta">March 2025 &ndash; June 2025</p>
+            <ul>
+                <li>Built a FastAPI application integrating the last.fm API for song metadata</li>
+                <li>Designed a ranking algorithm to determine user preferences</li>
+                <li>Engineered JSON-based persistence and modular Python components</li>
+            </ul>
+        </div>
+
+        <div class="entry">
+            <h3>Research Assistant &mdash; University of Oregon</h3>
+            <p class="meta">December 2021 &ndash; January 2023</p>
+            <ul>
+                <li>Co-authored a peer-reviewed research paper in psychology</li>
+                <li>Conducted data collection, processing, and analysis using R</li>
+                <li>Collaborated on literature reviews and manuscript preparation</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h2>Skills</h2>
+        <ul class="skills-list">
+            <li>Python</li>
+            <li>SQL</li>
+            <li>HTML</li>
+            <li>JavaScript</li>
+            <li>Pandas</li>
+            <li>NumPy</li>
+            <li>Sci-Kit Learn</li>
+            <li>FastAPI</li>
+            <li>Snowflake</li>
+            <li>Azure Data Factory</li>
+            <li>Databricks</li>
+            <li>SQL Server</li>
+            <li>Power BI</li>
+        </ul>
+    </section>
+
+    <footer>&copy; 2026 Cameron Lee</footer>
+
+</div>
+
+</body>
+</html>

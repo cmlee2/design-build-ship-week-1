@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cameron Lee | Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        /* Header */
+        header {
+            background: #1a1a2e;
+            color: #fff;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin-top: 16px;
+        }
+
+        .contact-links a {
+            color: #a8b2d1;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.2s;
+        }
+
+        .contact-links a:hover {
+            color: #64ffda;
+        }
+
+        /* Main */
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        section {
+            margin-bottom: 48px;
+        }
+
+        section h2 {
+            font-size: 1.6rem;
+            color: #1a1a2e;
+            border-bottom: 3px solid #64ffda;
+            display: inline-block;
+            padding-bottom: 4px;
+            margin-bottom: 24px;
+        }
+
+        /* Cards */
+        .card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin-bottom: 4px;
+        }
+
+        .card-header h3 {
+            font-size: 1.15rem;
+            color: #1a1a2e;
+        }
+
+        .card-header .location {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .card-subheader {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+
+        .card-subheader .role {
+            font-style: italic;
+            color: #555;
+        }
+
+        .card-subheader .dates {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .card ul {
+            list-style: disc;
+            padding-left: 20px;
+        }
+
+        .card ul li {
+            margin-bottom: 6px;
+            color: #444;
+            font-size: 0.95rem;
+        }
+
+        .coursework {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 4px;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .skill-category h3 {
+            font-size: 1rem;
+            color: #1a1a2e;
+            margin-bottom: 8px;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            background: #e8f4f8;
+            color: #1a1a2e;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 24px;
+            color: #999;
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .card-header,
+            .card-subheader {
+                flex-direction: column;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<a href="../index.html" style="position:fixed;top:20px;left:20px;color:#a8b2d1;text-decoration:none;font-size:0.85rem;z-index:10;">&larr; Back to designs</a>
+
+<header>
+    <h1>Cameron Lee</h1>
+    <div class="contact-links">
+        <a href="mailto:cameronmlee.home@gmail.com">cameronmlee.home@gmail.com</a>
+        <a href="https://linkedin.com/in/cameronmlee/">LinkedIn</a>
+        <a href="https://github.com/cmlee2">GitHub</a>
+    </div>
+</header>
+
+<main>
+
+    <!-- Education -->
+    <section>
+        <h2>Education</h2>
+
+        <div class="card">
+            <div class="card-header">
+                <h3>The University of Chicago</h3>
+                <span class="location">Chicago, IL</span>
+            </div>
+            <div class="card-subheader">
+                <span class="role">MS in Computer Science</span>
+                <span class="dates">June 2026 (Expected)</span>
+            </div>
+            <p class="coursework">Coursework: Databases, Machine Learning, Applied Financial Technology</p>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h3>University of California, Los Angeles (UCLA)</h3>
+                <span class="location">Los Angeles, CA</span>
+            </div>
+            <div class="card-subheader">
+                <span class="role">BA in Business Economics, BA in Psychology</span>
+                <span class="dates">June 2021</span>
+            </div>
+            <p class="coursework">Coursework: Behavioral Economics, Econometrics, Pricing and Strategy</p>
+        </div>
+    </section>
+
+    <!-- Experience -->
+    <section>
+        <h2>Experience</h2>
+
+        <div class="card">
+            <div class="card-header">
+                <h3>UnitedHealth Group Inc.</h3>
+                <span class="location">Chicago, IL (Remote)</span>
+            </div>
+            <div class="card-subheader">
+                <span class="role">Data Analyst</span>
+                <span class="dates">August 2024 &ndash; February 2026</span>
+            </div>
+            <ul>
+                <li>Build and maintain PowerBI dashboards for stakeholders tracking KPIs for delegates and members across datasets of 100+ million records</li>
+                <li>Develop data pipelines in Azure Data Factory and Snowflake to support a previously unsupported business sector, enabling stakeholders to generate daily reports</li>
+                <li>Collaborate with data engineering team to debug and refine SQL queries and stored procedures that led to a 66% reduction in weekly refresh time (48hrs to 16hrs)</li>
+                <li>Automate weekly deliverables using ADF, Python, and Databricks, cutting manual effort by 33% (12 hrs/week to 5 hrs/week)</li>
+            </ul>
+
+            <div class="card-subheader" style="margin-top: 16px;">
+                <span class="role">Python Developer</span>
+                <span class="dates">October 2023 &ndash; March 2024</span>
+            </div>
+            <ul>
+                <li>Optimized and migrated 5 Tableau dashboards to Power BI, streamlining reporting, reducing refresh times by 30%, and supporting leadership with a unified BI platform for decision-making</li>
+                <li>Redesigned PowerBI dashboards tracking nationwide membership, increasing legibility and highlighting areas of growth for stakeholders</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h3>Metadoc.ai</h3>
+                <span class="location">Los Angeles, CA (Remote)</span>
+            </div>
+            <div class="card-subheader">
+                <span class="role">Data Analyst</span>
+                <span class="dates">June 2023 &ndash; October 2023</span>
+            </div>
+            <ul>
+                <li>Prepared and validated unstructured datasets in Python, converting thousands of raw files into structured high-quality data to accelerate predictive model development</li>
+                <li>Authored standardized documentation for ETL, enabling faster onboarding and consistent execution among team of six</li>
+                <li>Performed strategic analyses (SWOT, market sizing) to uncover gaps and guide business growth initiatives</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Projects & Research -->
+    <section>
+        <h2>Projects &amp; Research</h2>
+
+        <div class="card">
+            <div class="card-header">
+                <h3>Artist and Song Ranker</h3>
+                <span class="dates">March 2025 &ndash; June 2025</span>
+            </div>
+            <ul>
+                <li>Built a FastAPI application integrating the last.fm API to pull song metadata</li>
+                <li>Designed and implemented a ranking algorithm (similar to Beli) to determine user preferences</li>
+                <li>Engineered JSON-based persistence and modular Python components for ranking, database and application logic</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h3>Research Assistant &mdash; University of Oregon</h3>
+                <span class="dates">December 2021 &ndash; January 2023</span>
+            </div>
+            <ul>
+                <li>Co-authored and published a peer-reviewed research paper in psychology (DOI: doi.org/10.1007/s10488-023-01276-9)</li>
+                <li>Conducted data collection, processing, and analysis using R, contributing to study design</li>
+                <li>Collaborated with faculty and graduate students on literature reviews and manuscript preparation</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section>
+        <h2>Skills</h2>
+        <div class="card">
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Languages</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">HTML</span>
+                        <span class="skill-tag">JavaScript</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Libraries &amp; Frameworks</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">NumPy</span>
+                        <span class="skill-tag">Sci-Kit Learn</span>
+                        <span class="skill-tag">FastAPI</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Data &amp; Cloud</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Snowflake</span>
+                        <span class="skill-tag">Azure Data Factory</span>
+                        <span class="skill-tag">Databricks</span>
+                        <span class="skill-tag">SQL Server</span>
+                        <span class="skill-tag">Power BI</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Certificates</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Data Analytics Bootcamp, UC Irvine (2023)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    &copy; 2026 Cameron Lee
+</footer>
+
+</body>
+</html>

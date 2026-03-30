@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cameron Lee | Retro</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            background: #f5f0e8;
+            color: #2c2c2c;
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        a { color: #8b4513; }
+        a:hover { color: #654321; }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 24px;
+            color: #a89880;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-family: 'Courier New', monospace;
+        }
+        .back-link:hover { color: #2c2c2c; }
+
+        /* Masthead */
+        .masthead {
+            text-align: center;
+            border-top: 4px double #2c2c2c;
+            border-bottom: 4px double #2c2c2c;
+            padding: 28px 0;
+            margin-bottom: 36px;
+        }
+
+        .masthead h1 {
+            font-size: 2.8rem;
+            font-weight: 400;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .masthead .contact {
+            font-size: 0.85rem;
+            color: #777;
+            font-style: italic;
+        }
+
+        .masthead .contact a {
+            color: #777;
+            text-decoration: none;
+            border-bottom: 1px dotted #aaa;
+        }
+
+        .masthead .contact a:hover {
+            color: #2c2c2c;
+            border-color: #2c2c2c;
+        }
+
+        .dateline {
+            text-align: center;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #999;
+            margin-bottom: 32px;
+        }
+
+        /* Sections */
+        section {
+            margin-bottom: 36px;
+        }
+
+        section h2 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #8b4513;
+            border-bottom: 1px solid #d4c5a9;
+            padding-bottom: 6px;
+            margin-bottom: 20px;
+        }
+
+        .columns {
+            column-count: 2;
+            column-gap: 32px;
+            column-rule: 1px solid #e0d8c8;
+        }
+
+        .entry {
+            break-inside: avoid;
+            margin-bottom: 24px;
+        }
+
+        .entry h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .entry .meta {
+            font-size: 0.8rem;
+            font-style: italic;
+            color: #888;
+            margin-bottom: 8px;
+        }
+
+        .entry p {
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .entry ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .entry ul li {
+            font-size: 0.88rem;
+            color: #444;
+            margin-bottom: 4px;
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .entry ul li::before {
+            content: '\2022';
+            position: absolute;
+            left: 0;
+            color: #c8a87c;
+        }
+
+        /* Skills as a horizontal rule-separated list */
+        .skill-line {
+            font-size: 0.9rem;
+            color: #555;
+            text-align: center;
+            padding: 20px 0;
+            border-top: 1px solid #d4c5a9;
+            border-bottom: 1px solid #d4c5a9;
+        }
+
+        .skill-line span {
+            margin: 0 6px;
+        }
+
+        .skill-line .sep {
+            color: #c8a87c;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 32px 0 16px;
+            font-size: 0.75rem;
+            color: #bbb;
+            font-style: italic;
+        }
+
+        @media (max-width: 600px) {
+            .columns { column-count: 1; }
+            .masthead h1 { font-size: 1.8rem; letter-spacing: 2px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <a href="../index.html" class="back-link">&larr; Back to designs</a>
+
+    <div class="masthead">
+        <h1>Cameron Lee</h1>
+        <p class="contact">
+            <a href="mailto:cameronmlee.home@gmail.com">cameronmlee.home@gmail.com</a> &nbsp;&bull;&nbsp;
+            <a href="https://linkedin.com/in/cameronmlee/">LinkedIn</a> &nbsp;&bull;&nbsp;
+            <a href="https://github.com/cmlee2">GitHub</a>
+        </p>
+    </div>
+
+    <p class="dateline">Portfolio &amp; Curriculum Vitae</p>
+
+    <section>
+        <h2>Education</h2>
+        <div class="columns">
+            <div class="entry">
+                <h3>The University of Chicago</h3>
+                <p class="meta">MS in Computer Science &middot; Expected June 2026</p>
+                <p>Coursework in Databases, Machine Learning, and Applied Financial Technology.</p>
+            </div>
+            <div class="entry">
+                <h3>UCLA</h3>
+                <p class="meta">BA Business Economics &amp; BA Psychology &middot; June 2021</p>
+                <p>Coursework in Behavioral Economics, Econometrics, Pricing and Strategy.</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Professional Experience</h2>
+        <div class="columns">
+            <div class="entry">
+                <h3>UnitedHealth Group Inc.</h3>
+                <p class="meta">Data Analyst &middot; Aug 2024 &ndash; Feb 2026</p>
+                <ul>
+                    <li>Built PowerBI dashboards tracking KPIs across 100M+ records</li>
+                    <li>Developed data pipelines in Azure Data Factory and Snowflake</li>
+                    <li>Achieved 66% reduction in weekly refresh time</li>
+                    <li>Automated deliverables, cutting manual effort by 33%</li>
+                </ul>
+            </div>
+            <div class="entry">
+                <p class="meta">Python Developer &middot; Oct 2023 &ndash; Mar 2024</p>
+                <ul>
+                    <li>Migrated 5 Tableau dashboards to Power BI</li>
+                    <li>Redesigned nationwide membership dashboards</li>
+                </ul>
+            </div>
+            <div class="entry">
+                <h3>Metadoc.ai</h3>
+                <p class="meta">Data Analyst &middot; Jun &ndash; Oct 2023</p>
+                <ul>
+                    <li>Prepared unstructured datasets for predictive models</li>
+                    <li>Authored standardized ETL documentation</li>
+                    <li>Performed SWOT and market sizing analyses</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Projects &amp; Research</h2>
+        <div class="columns">
+            <div class="entry">
+                <h3>Artist and Song Ranker</h3>
+                <p class="meta">Mar &ndash; Jun 2025</p>
+                <ul>
+                    <li>FastAPI application integrating last.fm API</li>
+                    <li>Ranking algorithm for user preferences</li>
+                    <li>JSON persistence with modular Python design</li>
+                </ul>
+            </div>
+            <div class="entry">
+                <h3>Research Assistant</h3>
+                <p class="meta">University of Oregon &middot; Dec 2021 &ndash; Jan 2023</p>
+                <ul>
+                    <li>Co-authored peer-reviewed psychology paper</li>
+                    <li>Data collection and analysis using R</li>
+                    <li>Literature reviews and manuscript preparation</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Skills</h2>
+        <div class="skill-line">
+            <span>Python</span><span class="sep">&middot;</span>
+            <span>SQL</span><span class="sep">&middot;</span>
+            <span>HTML</span><span class="sep">&middot;</span>
+            <span>JavaScript</span><span class="sep">&middot;</span>
+            <span>Pandas</span><span class="sep">&middot;</span>
+            <span>NumPy</span><span class="sep">&middot;</span>
+            <span>Sci-Kit Learn</span><span class="sep">&middot;</span>
+            <span>Snowflake</span><span class="sep">&middot;</span>
+            <span>Azure Data Factory</span><span class="sep">&middot;</span>
+            <span>Databricks</span><span class="sep">&middot;</span>
+            <span>Power BI</span>
+        </div>
+    </section>
+
+    <footer>&copy; 2026 Cameron Lee</footer>
+
+</div>
+
+</body>
+</html>

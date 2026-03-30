@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cameron Lee | Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background-color: #faf8fc;
+            color: #4a4a5a;
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        a {
+            color: #9b7bbf;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #7a5aa0;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin: 30px 0 0 40px;
+            padding: 10px 24px;
+            background-color: #e8d5f5;
+            color: #7a5aa0;
+            border-radius: 24px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            box-shadow: 0 3px 12px rgba(155, 123, 191, 0.15);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .back-link:hover {
+            background-color: #dcc4f0;
+            color: #6a4a90;
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px 30px 60px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 50px 40px 40px;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #e8d5f5 0%, #d5e8f5 50%, #d5f5e3 100%);
+            border-radius: 30px;
+            box-shadow: 0 6px 30px rgba(155, 123, 191, 0.12);
+        }
+
+        .header h1 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: #5a4a6a;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .header .subtitle {
+            font-size: 1.15rem;
+            color: #7a6a8a;
+            font-weight: 400;
+        }
+
+        .contact-row {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 22px;
+        }
+
+        .contact-pill {
+            display: inline-block;
+            padding: 8px 20px;
+            background-color: rgba(255, 255, 255, 0.65);
+            border-radius: 24px;
+            font-size: 0.9rem;
+            color: #6a5a7a;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-pill a {
+            color: #7a5aa0;
+        }
+
+        /* Section cards */
+        .section {
+            background-color: #ffffff;
+            border-radius: 24px;
+            padding: 36px 40px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            border: 1px solid #f0eaf5;
+        }
+
+        .section h2 {
+            font-size: 1.45rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            position: relative;
+            color: #5a4a6a;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 4px;
+            border-radius: 4px;
+        }
+
+        /* Color-coded section accents */
+        .section.education h2::after {
+            width: 60px;
+            background-color: #d5e8f5;
+        }
+
+        .section.experience h2::after {
+            width: 60px;
+            background-color: #e8d5f5;
+        }
+
+        .section.projects h2::after {
+            width: 60px;
+            background-color: #d5f5e3;
+        }
+
+        .section.skills h2::after {
+            width: 60px;
+            background-color: #f5e6d5;
+        }
+
+        /* Education */
+        .edu-item {
+            padding: 18px 22px;
+            background-color: #f5faff;
+            border-radius: 20px;
+            margin-bottom: 14px;
+            border-left: 4px solid #d5e8f5;
+        }
+
+        .edu-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .edu-item h3 {
+            font-size: 1.05rem;
+            color: #4a5a6a;
+            font-weight: 600;
+        }
+
+        .edu-item .degree {
+            font-size: 0.95rem;
+            color: #6a7a8a;
+            margin-top: 3px;
+        }
+
+        .edu-item .coursework {
+            font-size: 0.88rem;
+            color: #8a8a9a;
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        /* Experience */
+        .exp-item {
+            padding: 22px 24px;
+            background: linear-gradient(135deg, #faf5ff 0%, #faf8fc 100%);
+            border-radius: 20px;
+            margin-bottom: 16px;
+            border-left: 4px solid #e8d5f5;
+        }
+
+        .exp-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .exp-item .exp-header {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            align-items: baseline;
+            margin-bottom: 4px;
+        }
+
+        .exp-item h3 {
+            font-size: 1.05rem;
+            color: #5a4a6a;
+            font-weight: 600;
+        }
+
+        .exp-item .date-location {
+            font-size: 0.85rem;
+            color: #9a8aaa;
+            font-weight: 500;
+        }
+
+        .exp-item .role {
+            font-size: 0.95rem;
+            color: #7a6a8a;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .exp-item ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .exp-item ul li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 6px;
+            font-size: 0.92rem;
+            color: #5a5a6a;
+        }
+
+        .exp-item ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #e8d5f5;
+        }
+
+        /* Projects */
+        .project-item {
+            padding: 20px 24px;
+            background-color: #f5fdf8;
+            border-radius: 20px;
+            margin-bottom: 14px;
+            border-left: 4px solid #d5f5e3;
+        }
+
+        .project-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .project-item h3 {
+            font-size: 1.02rem;
+            color: #4a6a5a;
+            font-weight: 600;
+        }
+
+        .project-item .project-date {
+            font-size: 0.85rem;
+            color: #8aaa8a;
+            margin-bottom: 6px;
+        }
+
+        .project-item p {
+            font-size: 0.92rem;
+            color: #5a5a6a;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            display: inline-block;
+            padding: 8px 18px;
+            border-radius: 24px;
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: #5a4a6a;
+        }
+
+        .skill-tag:nth-child(5n+1) {
+            background-color: #e8d5f5;
+        }
+
+        .skill-tag:nth-child(5n+2) {
+            background-color: #d5f5e3;
+        }
+
+        .skill-tag:nth-child(5n+3) {
+            background-color: #f5e6d5;
+        }
+
+        .skill-tag:nth-child(5n+4) {
+            background-color: #f5d5e0;
+        }
+
+        .skill-tag:nth-child(5n+5) {
+            background-color: #d5e8f5;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #aaa0b5;
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .container {
+                padding: 16px 16px 40px;
+            }
+
+            .header {
+                padding: 36px 24px 30px;
+                border-radius: 24px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 26px 22px;
+                border-radius: 20px;
+            }
+
+            .back-link {
+                margin: 20px 0 0 20px;
+            }
+
+            .contact-row {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .exp-item .exp-header {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <a href="../index.html" class="back-link">&#8592; Back</a>
+
+    <div class="container">
+
+        <!-- Header -->
+        <div class="header">
+            <h1>Cameron Lee</h1>
+            <p class="subtitle">Data Analyst &amp; Computer Science Graduate Student</p>
+            <div class="contact-row">
+                <span class="contact-pill"><a href="mailto:cameronmlee.home@gmail.com">cameronmlee.home@gmail.com</a></span>
+                <span class="contact-pill"><a href="https://linkedin.com/in/cameronmlee/">LinkedIn</a></span>
+                <span class="contact-pill"><a href="https://github.com/cmlee2">GitHub</a></span>
+            </div>
+        </div>
+
+        <!-- Education -->
+        <div class="section education">
+            <h2>Education</h2>
+            <div class="edu-item">
+                <h3>University of Chicago</h3>
+                <p class="degree">MS Computer Science &mdash; Expected June 2026</p>
+                <p class="coursework">Coursework: Databases, Machine Learning, Applied Financial Technology</p>
+            </div>
+            <div class="edu-item">
+                <h3>University of California, Los Angeles</h3>
+                <p class="degree">BA Business Economics + BA Psychology &mdash; June 2021</p>
+            </div>
+        </div>
+
+        <!-- Experience -->
+        <div class="section experience">
+            <h2>Experience</h2>
+
+            <div class="exp-item">
+                <div class="exp-header">
+                    <h3>UnitedHealth Group Inc.</h3>
+                    <span class="date-location">Aug 2024 &ndash; Feb 2026 &middot; Chicago, IL (Remote)</span>
+                </div>
+                <p class="role">Data Analyst</p>
+                <ul>
+                    <li>Build and maintain Power BI dashboards tracking KPIs across 100M+ records</li>
+                    <li>Develop data pipelines in Azure Data Factory and Snowflake</li>
+                    <li>Achieved 66% reduction in weekly refresh time (48 hrs down to 16 hrs)</li>
+                    <li>Automate deliverables with ADF, Python, and Databricks &mdash; 33% less manual effort</li>
+                </ul>
+            </div>
+
+            <div class="exp-item">
+                <div class="exp-header">
+                    <h3>UnitedHealth Group Inc.</h3>
+                    <span class="date-location">Oct 2023 &ndash; Mar 2024</span>
+                </div>
+                <p class="role">Python Developer</p>
+                <ul>
+                    <li>Migrated 5 Tableau dashboards to Power BI, achieving 30% faster refresh</li>
+                    <li>Redesigned nationwide membership dashboards</li>
+                </ul>
+            </div>
+
+            <div class="exp-item">
+                <div class="exp-header">
+                    <h3>Metadoc.ai</h3>
+                    <span class="date-location">Jun &ndash; Oct 2023 &middot; Los Angeles, CA (Remote)</span>
+                </div>
+                <p class="role">Data Analyst</p>
+                <ul>
+                    <li>Prepared unstructured datasets in Python for predictive models</li>
+                    <li>Authored standardized ETL documentation for a team of six</li>
+                    <li>Performed SWOT and market sizing analyses</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Projects -->
+        <div class="section projects">
+            <h2>Projects</h2>
+
+            <div class="project-item">
+                <h3>Artist and Song Ranker</h3>
+                <p class="project-date">Mar &ndash; Jun 2025</p>
+                <p>Built with FastAPI and the last.fm API. Features a custom ranking algorithm with JSON persistence for tracking and comparing artists and songs.</p>
+            </div>
+
+            <div class="project-item">
+                <h3>Research Assistant &mdash; University of Oregon</h3>
+                <p class="project-date">Dec 2021 &ndash; Jan 2023</p>
+                <p>Co-authored a peer-reviewed psychology paper. Conducted statistical analysis in R to support research findings.</p>
+            </div>
+        </div>
+
+        <!-- Skills -->
+        <div class="section skills">
+            <h2>Skills</h2>
+            <div class="skills-grid">
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">SQL</span>
+                <span class="skill-tag">HTML</span>
+                <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">Pandas</span>
+                <span class="skill-tag">NumPy</span>
+                <span class="skill-tag">Sci-Kit Learn</span>
+                <span class="skill-tag">FastAPI</span>
+                <span class="skill-tag">Snowflake</span>
+                <span class="skill-tag">Azure Data Factory</span>
+                <span class="skill-tag">Databricks</span>
+                <span class="skill-tag">SQL Server</span>
+                <span class="skill-tag">Power BI</span>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Cameron Lee &middot; 2026</p>
+        </div>
+
+    </div>
+
+</body>
+</html>
